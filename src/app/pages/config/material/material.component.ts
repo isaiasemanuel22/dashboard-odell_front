@@ -6,11 +6,10 @@ import { TypeMaterialService } from '../../../services/typeMaterial/type-materia
 
 
 @Component({
-  selector: 'odell-material',
-  standalone: true,
-  imports: [FormComponent,ReactiveFormsModule,InputComponent],
-  templateUrl: './material.component.html',
-  styleUrl: './material.component.scss'
+    selector: 'odell-material',
+    imports: [FormComponent, ReactiveFormsModule, InputComponent],
+    templateUrl: './material.component.html',
+    styleUrl: './material.component.scss'
 })
 export class MaterialComponent {
 

@@ -4,11 +4,10 @@ import { NgFor, NgIf } from '@angular/common';
 import { CardResumeComponent } from "../card-resume/card-resume.component";
 
 @Component({
-  selector: 'odell-list-orders',
-  standalone: true,
-  imports: [NgFor, NgIf, CardResumeComponent],
-  templateUrl: './list-orders.component.html',
-  styleUrl: './list-orders.component.scss'
+    selector: 'odell-list-orders',
+    imports: [NgFor, NgIf, CardResumeComponent],
+    templateUrl: './list-orders.component.html',
+    styleUrl: './list-orders.component.scss'
 })
 export class ListOrdersComponent {
 

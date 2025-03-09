@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Chart, ChartConfiguration, registerables } from 'chart.js';
 
 @Component({
-  selector: 'odell-chart-solds',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'odell-chart-solds',
+    imports: [],
+    template: `
     <div style="width: 100%; max-width: 600px; margin: auto;">
       <canvas id="salesChart"></canvas>
     </div>
   `,
-  styleUrl: './chart-solds.component.scss'
+    styleUrl: './chart-solds.component.scss'
 })
 export class ChartSoldsComponent implements OnInit{
   ngOnInit(): void {

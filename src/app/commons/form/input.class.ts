@@ -3,11 +3,10 @@ import { ControlValueAccessor, FormControl } from "@angular/forms";
 
 
 @Component({
-  selector: '',
-  standalone: true,
-  imports: [],
-  template: ``,
-  styles: '',
+    selector: '',
+    imports: [],
+    template: ``,
+    styles: '',
     providers: []
 })
 export class InputGeneral implements ControlValueAccessor{

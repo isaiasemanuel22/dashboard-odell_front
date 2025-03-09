@@ -7,12 +7,11 @@ import { FiltersComponent } from './compoents/odell-filters/odell-filters.compon
 import { SearchComponent } from './compoents/search/search.component';
 
 @Component({
-  selector: 'odell-products',
-  standalone: true,
-  imports: [ListProductsComponent, FiltersComponent, CommonModule , SearchComponent],
-  providers:[ProductsService],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.scss'
+    selector: 'odell-products',
+    imports: [ListProductsComponent, FiltersComponent, CommonModule, SearchComponent],
+    providers: [ProductsService],
+    templateUrl: './products.component.html',
+    styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit{
   

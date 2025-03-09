@@ -6,11 +6,10 @@ import { ProductDTO } from '../../services/models/product.interface';
 
 
 @Component({
-  selector: 'odell-add-product',
-  standalone: true,
-  imports: [CreateProductComponent],
-  templateUrl: './add-product.component.html',
-  styleUrl: './add-product.component.scss'
+    selector: 'odell-add-product',
+    imports: [CreateProductComponent],
+    templateUrl: './add-product.component.html',
+    styleUrl: './add-product.component.scss'
 })
 export class AddProductComponent {
 

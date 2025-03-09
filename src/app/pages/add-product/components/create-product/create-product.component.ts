@@ -10,11 +10,10 @@ import { ConfigService } from '../../../../services/config/config.service';
 import { FormComponent } from "../../../../commons/form/form/form.component";
 
 @Component({
-  selector: 'odell-create-product',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgFor, InputComponent, SelectComponent, FileComponent, AsyncPipe, FormComponent],
-  templateUrl: './create-product.component.html',
-  styleUrl: './create-product.component.scss'
+    selector: 'odell-create-product',
+    imports: [ReactiveFormsModule, NgFor, InputComponent, SelectComponent, FileComponent, AsyncPipe, FormComponent],
+    templateUrl: './create-product.component.html',
+    styleUrl: './create-product.component.scss'
 })
 export class CreateProductComponent {
 

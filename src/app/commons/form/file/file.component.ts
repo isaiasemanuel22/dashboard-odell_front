@@ -4,17 +4,16 @@ import { InputGeneral } from '../input.class';
 
 
 @Component({
-  selector: 'odell-file',
-  standalone: true,
-  imports: [],
-  templateUrl: './file.component.html',
-  styleUrl: './file.component.scss',
+    selector: 'odell-file',
+    imports: [],
+    templateUrl: './file.component.html',
+    styleUrl: './file.component.scss',
     providers: [
-      {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => FileComponent),
-        multi: true
-      }
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => FileComponent),
+            multi: true
+        }
     ]
 })
 export class FileComponent  extends InputGeneral{

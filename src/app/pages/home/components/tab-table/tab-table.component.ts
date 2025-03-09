@@ -1,11 +1,10 @@
 import { Component, ContentChild, ElementRef, Input } from '@angular/core';
 
 @Component({
-  selector: 'odell-tab-table',
-  standalone: true,
-  imports: [],
-  templateUrl: './tab-table.component.html',
-  styleUrl: './tab-table.component.scss'
+    selector: 'odell-tab-table',
+    imports: [],
+    templateUrl: './tab-table.component.html',
+    styleUrl: './tab-table.component.scss'
 })
 export class TabTableComponent {
 

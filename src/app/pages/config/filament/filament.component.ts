@@ -8,11 +8,10 @@ import { Observable } from 'rxjs';
 import { AsyncPipe, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'odell-filament',
-  standalone: true,
-  imports: [ReactiveFormsModule,InputComponent,FormComponent,SelectComponent,AsyncPipe,NgFor],
-  templateUrl: './filament.component.html',
-  styleUrl: './filament.component.scss'
+    selector: 'odell-filament',
+    imports: [ReactiveFormsModule, InputComponent, FormComponent, SelectComponent, AsyncPipe, NgFor],
+    templateUrl: './filament.component.html',
+    styleUrl: './filament.component.scss'
 })
 export class FilamentComponent {
 

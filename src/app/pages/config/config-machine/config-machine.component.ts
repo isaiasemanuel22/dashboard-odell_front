@@ -5,11 +5,10 @@ import { ConfigService } from '../../../services/config/config.service';
 import { FormComponent } from '../../../commons/form/form/form.component';
 
 @Component({
-  selector: 'odell-config-machine',
-  standalone: true,
-  imports: [ReactiveFormsModule, InputComponent,FormComponent],
-  templateUrl: './config-machine.component.html',
-  styleUrl: './config-machine.component.scss'
+    selector: 'odell-config-machine',
+    imports: [ReactiveFormsModule, InputComponent, FormComponent],
+    templateUrl: './config-machine.component.html',
+    styleUrl: './config-machine.component.scss'
 })
 export class ConfigMachineComponent implements OnInit{
 

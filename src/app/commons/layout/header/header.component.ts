@@ -4,11 +4,10 @@ import { RouterModule } from '@angular/router';
 import { routes } from '../../../app.routes';
 
 @Component({
-  selector: 'odell-header',
-  standalone: true,
-  imports: [RouterModule, CommonModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+    selector: 'odell-header',
+    imports: [RouterModule, CommonModule],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   
