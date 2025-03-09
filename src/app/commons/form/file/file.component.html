@@ -1,0 +1,5 @@
+
+<input [id]="inputName" type="file" (change)="getFiles($event)" [accept]="filesTypes"  [multiple]="multiple" />
+<label [for]="inputName" class="custom-file-upload">
+    <ng-content></ng-content>    
+</label>

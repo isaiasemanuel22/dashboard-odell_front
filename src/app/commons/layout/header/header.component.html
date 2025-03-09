@@ -1,0 +1,14 @@
+<header class="header">
+    <nav class="nav">
+        <div class="icon">
+            <img src="assets/lobo.png" alt="">
+            <h3>Odell Dashboard</h3>
+        </div>
+
+        <div class="list-navigation">
+            @for (route of routes;track route) {
+                <a [routerLink]="route.path">{{route.title}}</a>
+            }
+        </div>
+    </nav>
+ </header>

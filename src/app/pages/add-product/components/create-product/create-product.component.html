@@ -1,0 +1,63 @@
+
+<odell-form>
+    <span>Crear Producto</span>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+                <odell-input size="medium" inputName='name' [formControl]="formControlName('name')" >Nombre</odell-input>
+                <odell-input size="small" inputName='cant' [formControl]="formControlName('cant')">Cantidad</odell-input>
+                <odell-select inputName="material" [formControl]="formControlName('material')">
+                    <label>Type</label>
+                    <option *ngFor="let type of $types | async" [value]="type">{{ type }}</option>
+                </odell-select>
+        </div>
+        <div class="row">
+            <odell-input size="small" inputName='gramos' [formControl]="formControlName('gramos')" type="number">Gramos</odell-input>
+            <odell-input size="small" inputName='horas' [formControl]="formControlName('horas')" type="number">Horas</odell-input>
+            <odell-select inputName="material" [formControl]="formControlName('material')">
+                <label>Material</label>
+                <option value="1">PLA</option>
+                <option value="2">PTGE</option>
+                <option value="3">TPU</option>
+                <option value="4">RESINA</option>
+                <option value="5">ESPECIAL</option>
+            </odell-select>
+    
+        </div>
+        <div class="row">
+            <odell-select inputName="extras" [formControl]="formControlName('extras')">
+                <label>Suplementos</label>
+                <option value="">Sin suplementos</option>
+                <option *ngFor="let supplement of $suplements | async" [value]="supplement.name" >{{supplement.name }}</option>
+    
+            </odell-select>
+              <odell-file filesAcepted=".3mf" inputName="file3mf">
+                Archivo 3MF
+              </odell-file>
+        </div>
+    
+        <div class="row">
+            <div class="input">
+                <label>Suplement</label>
+                <input type="checkbox"  formControlName="supplement" id="">
+            </div>
+            <div class="input">
+                <label>Product</label>
+               
+            <input type="checkbox" formControlName="product" id="">
+            </div>
+    
+        </div>
+    
+        <div class="row">
+            <odell-file inputName="fotos"  filesAcepted="." [multiple]="true">
+                Fotos
+            </odell-file>
+        </div>
+      
+        <p *ngFor="let photo of productForm.get('photos')?.value">
+            {{photo.name}}
+        </p>
+    
+        <button type="submit" [disabled]="productForm.invalid">Agregar Producto</button>
+      </form>
+</odell-form>

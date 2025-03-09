@@ -1,0 +1,9 @@
+<odell-form >
+    <span>Material</span>
+    <form [formGroup]="materialForm" (ngSubmit)="onSubmit()" class="form">
+        <div class="row">
+                <odell-input size="medium" inputName='name' [formControl]="formControlName('name')" >Type</odell-input>
+        </div>
+        <button type="submit" [disabled]="materialForm.invalid">Agregar Material</button>
+      </form>
+</odell-form>

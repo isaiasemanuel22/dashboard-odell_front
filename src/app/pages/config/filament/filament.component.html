@@ -1,0 +1,32 @@
+<odell-form >
+    <span>Filamento</span>
+    <form [formGroup]="filamentForm" (ngSubmit)="onSubmit()" class="form">
+        <div class="row">
+                <odell-input size="small" type="number" inputName='kgMaterial' [formControl]="formControlName('kgMaterial')" >Kg</odell-input>
+                <odell-input size="small" type="number" inputName='cant' [formControl]="formControlName('cant')" >Stock</odell-input>
+                <odell-select inputName="color" [formControl]="formControlName('color')">
+                    <label>colors</label>
+                    <option>sin color</option>
+                    <option>Azul</option>
+                    <option>Verde</option>
+                    <option>Amarillo</option>
+                    <option>Violeta</option>
+                </odell-select>
+
+                <odell-select inputName="brandFilament" [formControl]="formControlName('brandFilament')">
+                    <label>Marca Filamento</label>
+                    <option>sin color</option>
+                    <option>Azul</option>
+                    <option>Verde</option>
+                    <option>Amarillo</option>
+                    <option>Violeta</option>
+                </odell-select>
+
+                <odell-select inputName="typeMaterial" [formControl]="formControlName('typeMaterial')">
+                    <label>Typo Filamento</label>
+                    <option *ngFor="let materialType of $listMaterials | async" [value]="materialType.id">{{ materialType.name}}</option>
+                </odell-select>
+        </div>
+        <button type="submit" [disabled]="filamentForm.invalid">Agregar Filamento</button>
+      </form>
+</odell-form>

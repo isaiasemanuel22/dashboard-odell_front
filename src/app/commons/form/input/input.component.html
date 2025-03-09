@@ -1,0 +1,9 @@
+<ng-container *ngIf="formControl!== null">
+    <label [for]="inputName"> 
+        <ng-content></ng-content>
+    </label>
+    <input [ngClass]="size"  [id]="inputName" [type]="type" [formControl]="formControl" />
+    <div *ngIf="formControl.invalid && formControl.touched">
+      {{inputName}} esta cargado de forma incorrecta.
+    </div>
+</ng-container>

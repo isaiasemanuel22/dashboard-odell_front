@@ -1,0 +1,12 @@
+<ng-container *ngIf="formControl!== null">
+    <label [for]="inputName"> 
+        <ng-content select="label" ></ng-content>
+    </label>
+    <select [formControl]="formControl"  [id]="inputName">
+        <ng-content select="option">
+        </ng-content>
+    </select>
+    <div *ngIf="formControl.invalid && formControl.touched">
+      {{inputName}} esta cargado de forma incorrecta.
+    </div>
+</ng-container>

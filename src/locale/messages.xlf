@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="names_table" datatype="html">
+        <source> <x id="ICU" equiv-text="{title, select, 
+                    name {Nombre} 
+                    id {Identificador} 
+                    cant {Cantidad} 
+                    price {Precio} 
+                    other {{{title}}}
+                  }" xid="5501155474403244882"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/components/list-orders/list-orders.component.html</context>
+          <context context-type="linenumber">12,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2119131064103539188" datatype="html">
+        <source>{VAR_SELECT, select, name {Nombre} id {Identificador} cant {Cantidad} price {Precio} other {<x id="INTERPOLATION"/>}}</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/components/list-orders/list-orders.component.html</context>
+          <context context-type="linenumber">12,15</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

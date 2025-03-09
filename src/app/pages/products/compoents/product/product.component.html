@@ -1,0 +1,26 @@
+
+<div class="product" (click)="handleClick()">
+    <ng-container *ngIf="product !== null ; else addProduct">
+        <div class="product-picture">
+            <img src="/assets/no-image.webp" alt="">
+        </div>
+        
+        <h3 *ngIf="product !== null">
+            {{product.name}}
+        </h3>
+    </ng-container>
+    
+    <ng-template #addProduct>
+        <div class="addProduct">
+            <div class="icon">
+                <fa-icon [icon]="plusIcon"></fa-icon>
+            </div>
+            <div class="text">
+                <p>Agregar nuevo producto</p>
+            </div>
+           
+        </div>
+    </ng-template>
+</div>
+
+

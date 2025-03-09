@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "odell-dashboard": {
+      "i18n": {
+      "sourceLocale": "en",
+      "locales": {
+        "es": "src/locale/messages.es.xlf"
+      }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,26 +18,32 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "odell",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+          
             "outputPath": "dist/odell-dashboard",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
+            "polyfills":[
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+"glob": "**/*",
+"input": "public"
+},
+{
+"glob": "**/*",
+"input": "src/assets",
+"output": "/assets"
+}],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -62,6 +74,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "./proxy.config.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "odell-dashboard:build:production"
@@ -80,7 +95,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
@@ -91,6 +107,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -98,5 +115,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

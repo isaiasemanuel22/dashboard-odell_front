@@ -1,0 +1,33 @@
+:host{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 4px;
+    flex-flow: column;
+    label{
+        white-space: nowrap;
+        box-sizing: border-box;
+        text-align:start;
+        width: 100%;
+    }
+    input{
+        box-sizing: border-box;
+        
+    }
+
+    .auto{
+        width: 100%;
+    }
+
+    .small{
+        width: 100px;
+    }
+
+    .medium{
+        width: 200px;
+    }
+
+    .big{
+        width: 300px;
+    }
+}

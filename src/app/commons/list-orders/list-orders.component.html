@@ -1,0 +1,35 @@
+<odell-card-resume>
+    <div class="container-list">
+        <div class="title">
+           <ng-content select="h3"></ng-content>
+        </div>
+        <div class="container-table">
+          <table>
+              <thead>
+                <tr>
+                  <th *ngFor="let title of titles" scope="col" i18n="@@names_table">
+                    {title, select, 
+                      name {Nombre} 
+                      id {Identificador} 
+                      cant {Cantidad} 
+                      price {Precio} 
+                      other {{{title}}}
+                    }
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of items;">
+                  <ng-container *ngFor="let title of titles; let i = index">
+                      <th *ngIf="i === 0" scope="row">{{ item[title] }}</th>
+                      <td *ngIf="i > 0">{{ item[title] }} </td>
+                  </ng-container>
+                </tr>  
+              </tbody>
+            </table>
+      </div>
+    </div>
+
+</odell-card-resume>
+ 
+

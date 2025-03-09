@@ -1,0 +1,21 @@
+:host{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    form{
+        display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-flow: column;
+            .row{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+            }
+    }
+}

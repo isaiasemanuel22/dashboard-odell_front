@@ -1,0 +1,9 @@
+<div class="container">
+    <odell-filters>
+    </odell-filters>
+    <div class="products">
+        <odell-search></odell-search>
+        <odell-list-products *ngIf="$listProducts | async as products"  [products]="products"></odell-list-products>
+    </div>
+</div>
+

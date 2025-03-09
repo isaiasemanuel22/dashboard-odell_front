@@ -1,0 +1,15 @@
+
+<odell-form>
+    <span> {{ configFixed.get('type')?.value}}</span>
+    <form class="form" [formGroup]="configFixed" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <odell-input size="small" inputName='price_kwh'         [formControl]="formControlName('price_kwh')" type="number" >price_kwh</odell-input>
+            <odell-input size="small" inputName='consume_x_hour'   [formControl]="formControlName('consume_x_hour')"  type="number"> consume_x_hour</odell-input>
+            <odell-input size="small" inputName='wear_machine'      [formControl]="formControlName('wear_machine')" type="number">wear_machine</odell-input>
+            <odell-input size="small" inputName='price_replacement' [formControl]="formControlName('price_replacement')" type="number">price_replacement</odell-input>
+            <odell-input size="small" inputName='margin_error'      [formControl]="formControlName('margin_error')" type="number">margin_error</odell-input>
+            <odell-input inputName='type' [formControl]="formControlName('type')">Type</odell-input>
+        </div>
+        <button type="submit" [disabled]="configFixed.invalid">Agregar Configuracion</button>
+      </form>
+</odell-form>
