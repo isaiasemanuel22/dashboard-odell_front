@@ -3,27 +3,23 @@
     <form [formGroup]="filamentForm" (ngSubmit)="onSubmit()" class="form">
         <div class="row">
                 <odell-input size="small" type="number" inputName='kgMaterial' [formControl]="formControlName('kgMaterial')" >Kg</odell-input>
+                <odell-input size="small" type="number" inputName='price' [formControl]="formControlName('price')" >price</odell-input>
                 <odell-input size="small" type="number" inputName='cant' [formControl]="formControlName('cant')" >Stock</odell-input>
                 <odell-select inputName="color" [formControl]="formControlName('color')">
                     <label>colors</label>
-                    <option>sin color</option>
-                    <option>Azul</option>
-                    <option>Verde</option>
-                    <option>Amarillo</option>
-                    <option>Violeta</option>
+                    <option value="0">sin color</option>
+                    <option *ngFor="let color of $listColors | async" [value]="color.id">{{color.name}}</option>
                 </odell-select>
 
                 <odell-select inputName="brandFilament" [formControl]="formControlName('brandFilament')">
                     <label>Marca Filamento</label>
-                    <option>sin color</option>
-                    <option>Azul</option>
-                    <option>Verde</option>
-                    <option>Amarillo</option>
-                    <option>Violeta</option>
+                    <option value="0">sin marca</option>
+                    <option *ngFor="let brand of $listBrand|async" [value]="brand.id">{{brand.name}}</option>
                 </odell-select>
 
                 <odell-select inputName="typeMaterial" [formControl]="formControlName('typeMaterial')">
                     <label>Typo Filamento</label>
+                    <option value="0">sin material</option>
                     <option *ngFor="let materialType of $listMaterials | async" [value]="materialType.id">{{ materialType.name}}</option>
                 </odell-select>
         </div>

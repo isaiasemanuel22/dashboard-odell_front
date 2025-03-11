@@ -1,0 +1,9 @@
+<odell-form >
+    <span>Color</span>
+    <form [formGroup]="colorForm" (ngSubmit)="onSubmit()" class="form">
+        <div class="row">
+                <odell-input size="medium" inputName='name' [formControl]="formControlName('name')" >Nombre de color</odell-input>
+        </div>
+        <button type="submit" [disabled]="colorForm.invalid">Agregar Color</button>
+      </form>
+</odell-form>

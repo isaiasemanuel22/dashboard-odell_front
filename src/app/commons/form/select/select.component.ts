@@ -5,6 +5,7 @@ import { InputGeneral } from '../input.class';
 
 @Component({
     selector: 'odell-select',
+    standalone:true,
     imports: [ReactiveFormsModule, NgIf],
     templateUrl: './select.component.html',
     styleUrl: './select.component.scss',

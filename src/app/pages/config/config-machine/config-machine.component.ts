@@ -6,6 +6,7 @@ import { FormComponent } from '../../../commons/form/form/form.component';
 
 @Component({
     selector: 'odell-config-machine',
+    standalone:true,
     imports: [ReactiveFormsModule, InputComponent, FormComponent],
     templateUrl: './config-machine.component.html',
     styleUrl: './config-machine.component.scss'

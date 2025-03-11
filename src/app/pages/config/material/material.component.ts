@@ -7,6 +7,7 @@ import { TypeMaterialService } from '../../../services/typeMaterial/type-materia
 
 @Component({
     selector: 'odell-material',
+    standalone:true,
     imports: [FormComponent, ReactiveFormsModule, InputComponent],
     templateUrl: './material.component.html',
     styleUrl: './material.component.scss'
@@ -20,18 +21,15 @@ export class MaterialComponent {
       name: [],
     })
   }
-
-
-  
   onSubmit() {
     if (this.materialForm.valid) {
      this.typeMaterialService.setTypeMaterial(this.materialForm.value);
     }
   }
 
-    formControlName(name:string):FormControl{
+  formControlName(name:string):FormControl{
       return this.materialForm.get(name) as FormControl;
-    }
+  }
   
 
 }

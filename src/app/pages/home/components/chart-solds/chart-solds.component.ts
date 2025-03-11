@@ -4,6 +4,7 @@ import { Chart, ChartConfiguration, registerables } from 'chart.js';
 @Component({
     selector: 'odell-chart-solds',
     imports: [],
+    standalone:true,
     template: `
     <div style="width: 100%; max-width: 600px; margin: auto;">
       <canvas id="salesChart"></canvas>

@@ -14,6 +14,14 @@ export const endpoints = {
     typeMaterial:{
         getTypeMaterials:'/type-material',
         getNamesTypeMaterials:'/type-material/names'
+    },
+    brand:{
+        addBrand:'/brand-filament',
+        getBrands:'/brand-filament'
+    },
+    color:{
+        addColor:'/color',
+        getColors:'/color'
     }
 
 

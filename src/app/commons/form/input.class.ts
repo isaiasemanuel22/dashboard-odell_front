@@ -4,6 +4,7 @@ import { ControlValueAccessor, FormControl } from "@angular/forms";
 
 @Component({
     selector: '',
+    standalone:true,
     imports: [],
     template: ``,
     styles: '',

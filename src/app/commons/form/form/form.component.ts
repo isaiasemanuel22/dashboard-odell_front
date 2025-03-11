@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'odell-form',
+    standalone:true,
     imports: [],
     templateUrl: './form.component.html',
     styleUrl: './form.component.scss'

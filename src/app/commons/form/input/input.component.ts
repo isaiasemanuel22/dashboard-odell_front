@@ -5,6 +5,7 @@ import { InputGeneral } from '../input.class';
 
 @Component({
     selector: 'odell-input',
+    standalone:true,
     imports: [ReactiveFormsModule, NgIf, NgClass],
     templateUrl: './input.component.html',
     styleUrl: './input.component.scss',

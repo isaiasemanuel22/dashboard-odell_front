@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ChartSoldsComponent } from './components/chart-solds/chart-solds.component';
 import { CardResumeComponent } from '../../commons/card-resume/card-resume.component';
 import { ListOrdersComponent } from '../../commons/list-orders/list-orders.component';
 
 @Component({
     selector: 'odell-home',
-    imports: [ChartSoldsComponent, CardResumeComponent, ListOrdersComponent],
+    standalone:true,
+    imports: [ CardResumeComponent, ListOrdersComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })
