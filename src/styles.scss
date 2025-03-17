@@ -4,8 +4,11 @@ html, body { height: 100%; }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-body { margin: 0;   
-    font-family: "Roboto Condensed", serif;}
+body {
+    margin: 0;   
+    font-family: "Roboto Condensed", serif;
+    font-size: 16px;
+}
 a{
     text-decoration: none;
     color: #000;
