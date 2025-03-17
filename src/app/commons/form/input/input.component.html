@@ -2,5 +2,11 @@
     <label [for]="inputName"> 
         <ng-content></ng-content>
     </label>
-    <input [ngClass]="{size ,'error':formControl.invalid && formControl.touched}"  [id]="inputName" [type]="type" [formControl]="formControl" />
+    <input class="input" 
+    [ngClass]="{
+    'auto':size === 'auto',
+    'small':size === 'small',
+    'medium':size === 'medium',
+    'large':size === 'large',
+    'error':formControl.invalid && formControl.touched}"  [id]="inputName" [type]="type" [formControl]="formControl" />
 </ng-container>

@@ -1,8 +1,15 @@
-.container-form{
+:host{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}.container-form{
     padding: 8px;
     border-radius: 20px;
     background-color: #666;
     margin: 20px;
+    width: 100%;
     .title{
         padding: 8px;
         color: #0fb3ff;
