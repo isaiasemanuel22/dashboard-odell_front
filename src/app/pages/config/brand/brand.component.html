@@ -2,7 +2,7 @@
     <span>Marca Filamento</span>
     <form [formGroup]="brandForm" (ngSubmit)="onSubmit()" class="form">
         <div class="row">
-                <odell-input size="medium" inputName='name' [formControl]="formControlName('name')" >Nombre de marca</odell-input>
+            <odell-input size="medium" inputName='name' [formControlInput]="formControlName('name')" >Nombre de marca</odell-input>
         </div>
         <button type="submit" [disabled]="brandForm.invalid">Agregar Marca</button>
       </form>

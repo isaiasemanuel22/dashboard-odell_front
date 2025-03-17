@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './commons/layout/header/header.component';
+import { Store } from '@ngrx/store';
+import { loadFilaments } from './store/filaments.actions';
 
 @Component({
     selector: 'app-root',
@@ -10,4 +12,9 @@ import { HeaderComponent } from './commons/layout/header/header.component';
 })
 export class AppComponent {
   title = 'odell-dashboard';
+  store = inject(Store);
+
+  constructor(){
+    this.store.dispatch(loadFilaments());
+  }
 }

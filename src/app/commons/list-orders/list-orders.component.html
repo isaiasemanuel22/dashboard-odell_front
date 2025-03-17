@@ -7,7 +7,8 @@
           <table>
               <thead>
                 <tr>
-                  <th *ngFor="let title of titles" scope="col" i18n="@@names_table">
+                  <ng-container *ngFor="let title of titles" >
+                  <th scope="col" i18n="@@names_table" *ngIf="title !== 'id'">
                     {title, select, 
                       name {Nombre} 
                       id {Identificador} 
@@ -15,21 +16,27 @@
                       price {Precio} 
                       other {{{title}}}
                     }
-                  </th>
+                  </th> 
+                  </ng-container>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of items;">
                   <ng-container *ngFor="let title of titles; let i = index">
+                    <ng-container *ngIf="title !== 'id'">
                       <th *ngIf="i === 0" scope="row">{{ item[title] }}</th>
                       <td *ngIf="i > 0">{{ item[title] }} </td>
+                    </ng-container>
                   </ng-container>
+                  <td *ngIf="btnedit"><button class="edit" (click)="handlerBtn('edit',item)">Editar</button></td>
+                  <td *ngIf="btndelete"><button class="delete"  (click)="handlerBtn('delete',item)">Borrar</button></td>
                 </tr>  
               </tbody>
             </table>
       </div>
     </div>
-
 </odell-card-resume>
  
+
+
 

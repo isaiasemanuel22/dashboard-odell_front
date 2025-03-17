@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { InputGeneral } from '../input.class';
 
@@ -17,7 +17,7 @@ import { InputGeneral } from '../input.class';
         }
     ]
 })
-export class InputComponent extends InputGeneral implements OnInit {
+export class InputComponent extends InputGeneral{
   @Input() type = 'text' 
 
   @Input() size = 'auto';

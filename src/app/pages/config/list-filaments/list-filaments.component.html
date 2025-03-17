@@ -1,0 +1,4 @@
+<odell-list *ngIf="listFilaments.length > 0" [items]="listFilaments" [btnedit]="true" [btndelete]="true" (btn)="hamdler($event)"></odell-list>
+<odell-dialog *ngIf="openDialog" (close)="closeDialog()">
+    <odell-filament [dataFilament]="filamentSelected" (dataFilamentChange)="closeDialog()"></odell-filament>
+</odell-dialog>

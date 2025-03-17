@@ -2,7 +2,11 @@
     <label [for]="inputName"> 
         <ng-content select="label" ></ng-content>
     </label>
-    <select [formControl]="formControl"  [id]="inputName">
+    <select [id]="inputName" [formControl]="formControl" >
+        <ng-container *ngIf="options.length > 0">
+            <option *ngFor="let option of options" [value]="option.id">{{ option.name }}</option>
+        </ng-container>
+        
         <ng-content select="option">
         </ng-content>
     </select>

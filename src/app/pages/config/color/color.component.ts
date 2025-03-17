@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { FormComponent } from "../../../commons/form/form/form.component";
 import { InputComponent } from "../../../commons/form/input/input.component";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { BrandService } from '../../../services/brand/brand.service';
 import { ColorService } from '../../../services/color/color.service';
+import { ButtonComponent } from "../../../commons/form/button/button.component";
 
 @Component({
   selector: 'odell-color',
   standalone:true,
-  imports: [FormComponent, InputComponent,ReactiveFormsModule],
+  imports: [FormComponent, InputComponent, ReactiveFormsModule, ButtonComponent],
   templateUrl: './color.component.html',
   styleUrl: './color.component.scss'
 })

@@ -1,23 +1,26 @@
-import { Component, forwardRef } from '@angular/core';
-import {  NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { Component, Input, OnInit} from '@angular/core';
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { InputGeneral } from '../input.class';
 
 @Component({
     selector: 'odell-select',
     standalone:true,
-    imports: [ReactiveFormsModule, NgIf],
+    imports: [FormsModule, NgIf, NgFor , ReactiveFormsModule],
     templateUrl: './select.component.html',
     styleUrl: './select.component.scss',
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => SelectComponent),
-            multi: true
-        }
-    ]
+    providers: []
 })
-export class SelectComponent extends InputGeneral {
+export class SelectComponent extends InputGeneral implements OnInit {
 
+    @Input() options:any[] =[]
 
+    ngOnInit(): void {
+        if (this.formControl) {
+            console.log(this.formControl.value);
+            this.value = 1;
+        } else {
+            console.warn('⚠️ FormControl no está definido en SelectComponent');
+        }
+    }
 }

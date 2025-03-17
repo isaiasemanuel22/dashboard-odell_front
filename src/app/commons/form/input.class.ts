@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { ControlValueAccessor, FormControl } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 
 
 @Component({
@@ -10,37 +10,25 @@ import { ControlValueAccessor, FormControl } from "@angular/forms";
     styles: '',
     providers: []
 })
-export class InputGeneral implements ControlValueAccessor{
+export class InputGeneral {
 
-    @Input() inputName='';
-    @Input() formControl!:FormControl;
-  
-    value:any = null;
-  
-    ngOnInit(): void {
-      this.value = this.formControl?.value; 
+    @Input() inputName='';   // Nombre del input (para el label)
+    @Input() set formControlInput(formControl:FormControl){
+      this.formControl = formControl;
+      if(formControl !== undefined){
+        this.value = formControl.value
+        formControl.valueChanges.subscribe((response)=>{
+          console.log(response);
+        })
+      }
     }
+
+    formControl:any;
+    value: any = null;  
   
-    onChange = (value: any) => {}; // Función para actualizar el valor
-    onTouched = () => {}; // Función para marcar el control como tocado
-  
-    writeValue(value: any): void {
-      this.value = value || '';
+    constructor(){
+
     }
-  
-    registerOnChange(fn: any): void {
-      this.onChange = fn;
-    }
-  
-    registerOnTouched(fn: any): void {
-      this.onTouched = fn;
-    }
-  
-    onInput(event: Event) {
-      const value = (event.target as HTMLInputElement).value;
-      this.value = value;
-      this.onChange(value); // Notifica al formulario del nuevo valor
-    }
-  
+
 
 }

@@ -23,7 +23,7 @@
                 text-transform: capitalize;
                 th {
                     padding: 1rem;
-                    text-align: left;
+                    text-align: center;
                     font-weight: bold;
                     border-bottom: 2px solid #dee2e6;
                 }
@@ -59,4 +59,19 @@
             }
         }
     }
+}
+
+.edit , .delete{
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px #ccc;
+}
+
+.edit{
+    background-color: rgb(97, 182, 252);
+}
+
+.delete{
+    background-color: rgb(252, 97, 97);
 }

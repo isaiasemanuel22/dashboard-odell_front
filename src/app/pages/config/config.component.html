@@ -1,9 +1,31 @@
 
-<odell-config-machine></odell-config-machine>
-<odell-filament></odell-filament>
+<div class="paginator">
 
-<div class="basic">
-    <odell-brand></odell-brand>
-    <odell-material></odell-material>
-    <odell-color></odell-color>
+    <div class="listTabs">
+        <ul>
+            <li *ngFor="let nameTab of listTabs" (click)="selectTab(nameTab)" >{{nameTab}}</li>
+        </ul>
+    </div>
+    <div class="tab" *ngIf="inputSelected === 'machine'">
+        <odell-config-machine></odell-config-machine>
+    </div>
+    <div class="tab" *ngIf="inputSelected === 'filament'">
+        <odell-filament></odell-filament>
+        <odell-list-filaments ></odell-list-filaments>
+    </div>
+    <div class="tab" *ngIf="inputSelected === 'basic'">
+        <div class="basic">
+            <div class="colum">
+                <odell-brand></odell-brand>
+            </div>
+            <div class="colum">
+                <odell-material></odell-material>
+            </div>
+            <div class="colum">
+                <odell-color></odell-color>
+            </div>
+        </div>
+
+        
+    </div>
 </div>

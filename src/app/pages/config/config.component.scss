@@ -11,4 +11,39 @@
         justify-content: center;
         gap: 20px;
     }
+    .paginator{
+        width: 1000px;
+        margin: 20px;
+        border: 1px solid #000;
+        border-radius: 20px;
+        overflow: hidden;
+        .listTabs{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            box-shadow: 0px 1px 10px #000;
+            ul{
+                box-sizing: border-box;
+                width: 100%;
+                list-style: none;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1px;
+                background-color: #000;
+                li{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px;
+                    background-color: #ccc;
+                }
+            }
+            cursor: pointer;
+        }
+    }
+
 }

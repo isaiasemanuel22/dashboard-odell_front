@@ -1,67 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { NgFor, NgIf } from '@angular/common';
 import { CardResumeComponent } from "../card-resume/card-resume.component";
 
+
 @Component({
-    selector: 'odell-list-orders',
+    selector: 'odell-list',
     standalone:true,
     imports: [NgFor, NgIf, CardResumeComponent],
     templateUrl: './list-orders.component.html',
     styleUrl: './list-orders.component.scss'
 })
-export class ListOrdersComponent {
+export class ListComponent {
+
+
+  @Input() items:any[] = []
+  @Input() btnedit:boolean = false
+  @Input() btndelete:boolean = false
+
+  @Output() btn:EventEmitter<any> = new EventEmitter<any>();
 
   titles:any[] = [];
-
-
-  items:any = [
-    {
-      id:1234,
-      name:'producto1',
-      cant:'2',
-      price:'323'
-    },
-    {
-      id:1234,
-      name:'producto1',
-      cant:'2',
-      price:'323'
-    },
-    {
-      id:1234,
-      name:'producto1',
-      cant:'2',
-      price:'323'
-    },
-    {
-      id:1234,
-      name:'producto1',
-      cant:'2',
-      price:'323'
-    },
-    {
-      id:1234,
-      name:'producto1',
-      cant:'2',
-      price:'323'
-    },
-    {
-      id:1234,
-      name:'producto1',
-      cant:'2',
-      price:'323'
-    },
-    {
-      id:1234,
-      name:'producto1',
-      cant:'2',
-      price:'323'
-    }
-  ]
-
-
   constructor(){
-    this.titles = Object.keys(this.items[0]);
   }
-}
+
+  ngOnInit(): void {
+    this.titles = this.createTitles(this.items);
+  }
+
+  createTitles(items:any[]){
+    if(items !== null && items.length !== 0 ){
+      let obj = items[0] || {}
+        return Object.keys(obj);
+      }else{
+        return []
+      }
+    }
+
+    handlerBtn(action:any , data:any){
+      this.btn.emit({action:action , data:data});
+    }
+  }
+
