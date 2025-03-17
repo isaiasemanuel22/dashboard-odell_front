@@ -17,3 +17,16 @@ ul{
     margin: 0px;
     padding: 0px;
 }
+
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 2px #000;
+    width: 100%;
+    box-sizing: border-box;
+}
