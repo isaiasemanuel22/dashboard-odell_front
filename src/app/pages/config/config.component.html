@@ -1,6 +1,5 @@
 
 <div class="paginator">
-
     <div class="listTabs">
         <ul>
             <li *ngFor="let nameTab of listTabs" (click)="selectTab(nameTab)" >{{nameTab}}</li>
@@ -17,12 +16,15 @@
         <div class="basic">
             <div class="colum">
                 <odell-brand></odell-brand>
+                <odell-list-brand></odell-list-brand>
             </div>
             <div class="colum">
                 <odell-material></odell-material>
+                <odell-list-type-material></odell-list-type-material>
             </div>
             <div class="colum">
                 <odell-color></odell-color>
+                <odell-list-color></odell-list-color>
             </div>
         </div>
 

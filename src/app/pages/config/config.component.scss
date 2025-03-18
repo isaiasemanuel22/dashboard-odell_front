@@ -7,12 +7,20 @@
     .basic{
         width: 100%;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
-        gap: 20px;
+        gap: 16px;
+        .colum{
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-flow: column;
+            gap: 20px;
+            width: 100%;
+        }
     }
     .paginator{
-        width: 1000px;
+        width: 1200px;
         margin: 20px;
         border: 1px solid #000;
         border-radius: 20px;
@@ -44,6 +52,16 @@
             }
             cursor: pointer;
         }
+         .tab{
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-flow: column;
+            gap: 20px;
+        }
     }
+
+
 
 }

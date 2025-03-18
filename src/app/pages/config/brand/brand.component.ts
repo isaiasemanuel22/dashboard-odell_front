@@ -3,11 +3,12 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angul
 import { FormComponent } from "../../../commons/form/form/form.component";
 import { InputComponent } from "../../../commons/form/input/input.component";
 import { BrandService } from '../../../services/brand/brand.service';
+import { ButtonComponent } from "../../../commons/form/button/button.component";
 
 @Component({
   selector: 'odell-brand',
   standalone:true,
-  imports: [FormComponent, InputComponent,ReactiveFormsModule],
+  imports: [FormComponent, InputComponent, ReactiveFormsModule, ButtonComponent],
   templateUrl: './brand.component.html',
   styleUrl: './brand.component.scss'
 })

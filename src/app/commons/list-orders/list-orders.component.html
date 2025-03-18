@@ -25,7 +25,7 @@
                   <ng-container *ngFor="let title of titles; let i = index">
                     <ng-container *ngIf="title !== 'id'">
                       <th *ngIf="i === 0" scope="row">{{ item[title] }}</th>
-                      <td *ngIf="i > 0">{{ item[title] }} </td>
+                      <td *ngIf="i > 0"><span *ngIf="title === 'price'">$</span> {{ item[title] }} </td>
                     </ng-container>
                   </ng-container>
                   <td *ngIf="btnedit"><button class="edit" (click)="handlerBtn('edit',item)">Editar</button></td>

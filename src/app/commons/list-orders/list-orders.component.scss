@@ -6,6 +6,10 @@
     justify-content: flex-start;
     flex-flow: column;
     width: 100%;
+    .title{
+        padding: 5px;
+        color: #0fb3ff;
+    }
     .container-table {
         width: 100%;
         margin-top: 20px;
@@ -25,7 +29,6 @@
                     padding: 1rem;
                     text-align: center;
                     font-weight: bold;
-                    border-bottom: 2px solid #dee2e6;
                 }
             }
     
