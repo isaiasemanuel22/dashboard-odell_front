@@ -1,29 +1,49 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import {  Component, inject } from '@angular/core';
 import { ListComponent } from "../../../commons/list-orders/list-orders.component";
-import { TypeMaterialService } from '../../../services/typeMaterial/type-material.service';
-import { NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { allTypeMaterialsSelector } from '../../../store/typeMaterial/typeMaterial.selectors';
+import { map, Observable, pipe, take } from 'rxjs';
+import { DialogComponent } from "../../../commons/dialog/dialog.component";
+import { MaterialComponent } from "../material/material.component";
+import { deleteTypeMaterial } from '../../../store/typeMaterial/typeMaterial.actions';
 
 @Component({
   selector: 'odell-list-type-material',
-  imports: [ListComponent,NgIf],
+  imports: [ListComponent, AsyncPipe, DialogComponent, MaterialComponent],
   templateUrl: './list-type-material.component.html',
   styleUrl: './list-type-material.component.scss'
 })
 export class ListTypeMaterialComponent {
- typeMaterialList:any[]=[] 
+private readonly store = inject(Store)
+ $typeMaterialList:Observable<any>;
+ typeMaterialSelected = null;
+ openDialog = false;
 
- hamdler(evento:any){
-  console.log(evento);
+ constructor(){
+ this.$typeMaterialList =  this.store.select(allTypeMaterialsSelector);
  }
-
- constructor(
-  private readonly typeMaterialService:TypeMaterialService,
-  private readonly cdr:ChangeDetectorRef
-){
-  this.typeMaterialService.getAllTypeMaterials().subscribe((data:any) => {
-    console.log(data);
-    this.typeMaterialList = data;
-    cdr.detectChanges();
-  })
- }
+ 
+    hamdler(action:{action:string,data:any}){
+      switch(action.action){
+        case 'edit':{
+         this.$typeMaterialList.pipe(
+            map(typeMaterials=> typeMaterials.find((tm:any) => tm.id === action.data.id)),
+            pipe(take(1))
+          ).subscribe(typeMaterial => {
+            this.typeMaterialSelected = typeMaterial;
+          })
+        this.openDialog = true;
+          break;
+        }
+        case 'delete':{
+         this.store.dispatch(deleteTypeMaterial({id:action.data.id}))
+        }
+      }
+    }
+  
+   closeDialog(){
+      this.openDialog = false;
+      this.typeMaterialSelected = null;
+    }
 }

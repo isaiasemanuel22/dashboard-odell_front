@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { endpoints } from '../core/endpoints';
+import { Color } from '../models/Color.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,6 @@ export class ColorService {
   }
 
   getColors(){
-    return this.httpClient.get(endpoints.color.getColors)
+    return this.httpClient.get<Color[]>(endpoints.color.getColors)
   }
 }

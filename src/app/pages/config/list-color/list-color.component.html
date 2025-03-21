@@ -1,3 +1,3 @@
-<odell-list *ngIf="colorList.length > 0" [items]="colorList" [btnedit]="true" [btndelete]="true" (btn)="hamdler($event)">
+<odell-list  [items]="$colorList | async" [btnedit]="true" [btndelete]="true" (btn)="hamdler($event)">
    <h3>Listado de colores</h3> 
 </odell-list>

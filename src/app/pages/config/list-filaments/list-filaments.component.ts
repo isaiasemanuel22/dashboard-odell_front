@@ -5,8 +5,8 @@ import { Filament } from '../../../services/models/Filament.interface';
 import { DialogComponent } from "../../../commons/dialog/dialog.component";
 import { FilamentComponent } from "../filament/filament.component";
 import { Store } from '@ngrx/store';
-import { allFilaments } from '../../../store/filaments.selectors';
-import { removeFilament } from '../../../store/filaments.actions';
+import { allFilaments } from '../../../store/filaments/filaments.selectors';
+import { removeFilament } from '../../../store/filaments/filaments.actions';
 
 
 @Component({

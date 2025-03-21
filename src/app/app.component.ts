@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './commons/layout/header/header.component';
 import { Store } from '@ngrx/store';
-import { loadFilaments } from './store/filaments.actions';
+import { loadApp } from './store/initial.actions';
 
 @Component({
     selector: 'app-root',
@@ -15,6 +15,6 @@ export class AppComponent {
   store = inject(Store);
 
   constructor(){
-    this.store.dispatch(loadFilaments());
+    this.store.dispatch(loadApp());
   }
 }

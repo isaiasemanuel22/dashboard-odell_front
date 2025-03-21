@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { Filament } from "../services/models/Filament.interface";
+import { Filament } from "../../services/models/Filament.interface";
 import * as filamentsActions from './filaments.actions'
 
 

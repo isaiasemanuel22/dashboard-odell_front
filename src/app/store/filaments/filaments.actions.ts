@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Filament } from "../services/models/Filament.interface";
+import { Filament } from "../../services/models/Filament.interface";
 
 
 export const loadFilaments = createAction(

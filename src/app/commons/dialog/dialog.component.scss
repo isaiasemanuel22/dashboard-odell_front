@@ -13,7 +13,6 @@
     .container-dialog{
         max-width: 1000px;
         width: 90vw;
-        height:400px;
         background-color: #fff;
         border-radius: 20px;
         .header
@@ -25,6 +24,9 @@
             justify-content: flex-end;
             box-sizing: border-box;
             cursor: pointer;
+        }
+        .content{
+            padding: 20px;
         }
     }
 }

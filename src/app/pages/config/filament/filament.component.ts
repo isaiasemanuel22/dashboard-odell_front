@@ -1,18 +1,18 @@
-import { ChangeDetectorRef, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputComponent } from '../../../commons/form/input/input.component';
 import { FormComponent } from '../../../commons/form/form/form.component';
 import { SelectComponent } from '../../../commons/form/select/select.component';
-import { TypeMaterialService } from '../../../services/typeMaterial/type-material.service';
-import { forkJoin, Observable } from 'rxjs';
+import { combineLatest,Observable } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
-import { ColorService } from '../../../services/color/color.service';
-import { BrandService } from '../../../services/brand/brand.service';
-import { FilamentService } from '../../../services/filament/filament.service';
 import { ButtonComponent } from "../../../commons/form/button/button.component";
 import { Filament } from '../../../services/models/Filament.interface';
 import { Store } from '@ngrx/store';
-import { addFilament, updateFilament } from '../../../store/filaments.actions';
+import { addFilament, updateFilament } from '../../../store/filaments/filaments.actions';
+import { allBrandsSelector } from '../../../store/brand/brand.selector';
+import { allTypeMaterialsSelector } from '../../../store/typeMaterial/typeMaterial.selectors';
+import { allColorsSelector } from '../../../store/colors/colors.selectors';
+import { notNullValidator } from '../../../commons/form/validators.custom';
 
 @Component({
     selector: 'odell-filament',
@@ -21,7 +21,7 @@ import { addFilament, updateFilament } from '../../../store/filaments.actions';
     templateUrl: './filament.component.html',
     styleUrl: './filament.component.scss'
 })
-export class FilamentComponent {
+export class FilamentComponent implements OnInit{
 
   @Input()set dataFilament(data:Filament | undefined){
     this.dataFilamentEdit = data;
@@ -38,42 +38,37 @@ export class FilamentComponent {
     colorOptions:any[] = []
     brandOptions:any[] = []
     materialOptions:any[] = []
-    private editFilament = false;
+    editFilament = false;
     store = inject(Store);
     constructor(
       private readonly fb:FormBuilder,
-      private readonly typeMaterialService:TypeMaterialService,
-      private readonly colorsService:ColorService,
-      private readonly brandService:BrandService,
-      private readonly filamentService:FilamentService,
       private readonly cdr:ChangeDetectorRef
     ){
-      this.$listMaterials = this.typeMaterialService.getAllTypeMaterialsName();
-      this.$listColors = this.colorsService.getColors();
-      this.$listBrand = this.brandService.getBrands();
+      this.$listMaterials = this.store.select(allTypeMaterialsSelector);
+      this.$listColors = this.store.select(allColorsSelector)
+      this.$listBrand = this.store.select(allBrandsSelector);
     }
   
 
     ngOnInit(): void {
-      //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-      //Add 'implements OnInit' to the class.
-      forkJoin({
+      combineLatest({
         colors: this.$listColors,
         brands: this.$listBrand,
         materials: this.$listMaterials
       }).subscribe(
         (result) => {
+          console.log(result.colors);
           this.colorOptions = result.colors;
           this.brandOptions = result.brands;
           this.materialOptions = result.materials;
-          this.isLoading = false; 
           this.createFormFilament();
           this.createAndPathValue(this.dataFilamentEdit);
-          this.cdr.detectChanges(); // Cuando  está listo, habilita el formulario
+          this.cdr.detectChanges();
+          this.isLoading = false; 
         },
         (error) => {
           console.error('Error en las peticiones:', error);
-          this.isLoading = false; // En caso de error, también lo habilitamos (según el caso)
+          this.isLoading = false;
         }
       );
  
@@ -108,11 +103,11 @@ export class FilamentComponent {
       }){
         this.filamentForm = this.fb.group({
           kgMaterial: [form.kgMaterial, [Validators.required]],
-          brandFilament: [form.brandFilament, [Validators.required]],
-          typeMaterial: [form.typeMaterial, [Validators.required]],
-          stock:[form.stock, [Validators.required]],
-          color:[form.color, [Validators.required]],
-          price:[form.price, [Validators.required]],
+          brandFilament: [form.brandFilament, [Validators.required, notNullValidator()]],
+          typeMaterial: [form.typeMaterial, [Validators.required , notNullValidator()]],
+          stock:[form.stock, [Validators.required ] , ],
+          color:[form.color, [Validators.required ,  notNullValidator()]],
+          price:[form.price, [Validators.required ]],
         })
       }
 
@@ -129,14 +124,12 @@ export class FilamentComponent {
             price:number,
           } = {
             kgMaterial: data.kgMaterial,
-            brandFilament: data.brandFilament!.id,
-            typeMaterial:data.typeMaterial!.id,
+            brandFilament: data.brandFilament ? data.brandFilament.id : null,
+            typeMaterial:data.typeMaterial ? data.typeMaterial.id : null,
             stock:data.stock,
             color:data.color ? data.color.id : null, 
             price:data.price,
           }
-          console.log('valor de color' , formDataDefaul.color)
-          this.filamentForm.get('typeMaterial')!.setValue(formDataDefaul.typeMaterial);
           this.filamentForm.patchValue(formDataDefaul);
         }
         else{

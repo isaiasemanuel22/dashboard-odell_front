@@ -11,7 +11,7 @@ import { FormControl } from "@angular/forms";
     providers: []
 })
 export class InputGeneral {
-
+    @Input() size = 'auto';
     @Input() inputName='';   // Nombre del input (para el label)
     @Input() set formControlInput(formControl:FormControl){
       this.formControl = formControl;
