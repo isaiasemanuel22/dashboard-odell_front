@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from "../../../commons/form/form/form.component";
 import { InputComponent } from "../../../commons/form/input/input.component";
@@ -16,7 +16,8 @@ import { addBrand, updateBrand } from '../../../store/brand/brand.actions';
   styleUrl: './brand.component.scss'
 })
 export class BrandComponent {
-  @Input() brandData:BrandFilament | undefined;
+  @Input() brandData:BrandFilament | null = null;
+  @Output() dataBrandChange:EventEmitter<boolean> = new EventEmitter();
   brandForm!:FormGroup;
   editForm = false;
 
@@ -30,25 +31,24 @@ export class BrandComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    let data = this.brandData ? this.brandData : {name:''}
-    this.editForm = !!this.brandData;
+    let data = this.brandData ? this.brandData.name : ''
     this.brandForm = this.fb.group({
-      name: [data.name],
+      name: [data],
     })
   }
   onSubmit() {
     if (this.brandForm.valid) {
-      if(this.editForm){
-        if(this.brandData){
+      if(this.brandData){
           const dataUpdate = {
             id:this.brandData.id,
             name:this.brandForm.value
           }
           this.store.dispatch(updateBrand(dataUpdate))
         }
-      }else{
+      else{
         this.store.dispatch(addBrand(this.brandForm.value))
       }
+      this.dataBrandChange.emit(true);
       this.brandForm.reset();
     }
   }

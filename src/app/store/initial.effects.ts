@@ -5,7 +5,7 @@ import { mergeMap } from "rxjs";
 import { loadBrands } from "./brand/brand.actions";
 import { loadFilaments } from "./filaments/filaments.actions";
 import { loadTypeMaterials } from "./typeMaterial/typeMaterial.actions";
-import { allColors } from "./colors/colors.actions";
+import { loadColors } from "./colors/colors.actions";
 
 @Injectable()
 export class EffectInitalApp {
@@ -18,7 +18,7 @@ export class EffectInitalApp {
                 loadBrands(),
                 loadFilaments(),
                 loadTypeMaterials(),
-                allColors()
+                loadColors()
             ])
         )
     )

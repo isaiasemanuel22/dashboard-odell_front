@@ -4,6 +4,6 @@
         <div class="row">
                 <odell-input size="medium" inputName='name' [formControlInput]="formControlName('name')" >Type</odell-input>
         </div>
-        <odell-button typeButton="submit" [disabled]="materialForm.invalid">Agregar Material</odell-button>
+        <odell-button typeButton="submit" [disabled]="materialForm.invalid">{{ dataMaterial ? 'Actualizar' : 'Agregar Material'}}</odell-button>
       </form>
 </odell-form>

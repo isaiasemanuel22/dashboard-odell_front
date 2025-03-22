@@ -1,3 +1,7 @@
 <odell-list  [items]="$colorList | async" [btnedit]="true" [btndelete]="true" (btn)="hamdler($event)">
    <h3>Listado de colores</h3> 
 </odell-list>
+
+<odell-dialog *ngIf="openDialog" (close)="closeDialog()">
+   <odell-color [colorData]="colorSelected" (dataColorChange)="closeDialog()"></odell-color>
+</odell-dialog>

@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Color } from "../../services/models/Color.interface";
-import { allColorFaliure, allColorsSuccess } from "./colors.actions";
+import { loadColorsSuccess,loadColorsFaliure } from "./colors.actions";
 
 export interface ColorState{
     colors:Color[],
@@ -14,13 +14,13 @@ export const initialState:ColorState ={
 
 export const colorsReducer = createReducer<ColorState>(
     initialState,
-    on(allColorsSuccess , (state , {colors})=> {
+    on(loadColorsSuccess , (state , {colors})=> {
         return {
             ...state,
             colors
         }
     }),
-    on(allColorFaliure , (state , {error})=> {
+    on(loadColorsFaliure , (state , {error})=> {
         return {
             ...state ,
             error

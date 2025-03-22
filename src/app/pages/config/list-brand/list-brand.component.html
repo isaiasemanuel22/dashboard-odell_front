@@ -1,4 +1,8 @@
 
-<odell-list *ngIf="brandList.length > 0" [items]="$brandList | async" [btnedit]="true" [btndelete]="true" (btn)="hamdler($event)">
+<odell-list [items]="$brandList | async" [btnedit]="true" [btndelete]="true" (btn)="hamdler($event)">
    <h3>Marcas Filamento</h3> 
 </odell-list>
+
+<odell-dialog *ngIf="openDialog" (close)="closeDialog()">
+   <odell-brand [brandData]="brandSelected" (dataBrandChange)="closeDialog()"></odell-brand>
+</odell-dialog>

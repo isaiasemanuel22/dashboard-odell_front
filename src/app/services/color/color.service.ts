@@ -11,15 +11,19 @@ export class ColorService {
   constructor(private readonly httpClient:HttpClient) { }
 
   addColor(newColor:any){
-    return this.httpClient.post(endpoints.color.addColor,newColor)
-    .toPromise()
-    .then((response)=> {
-      console.log(response);
-      return response
-    })
+    return this.httpClient.post<Color>(endpoints.color.addColor,newColor)
   }
 
   getColors(){
     return this.httpClient.get<Color[]>(endpoints.color.getColors)
+  }
+
+  updateColor(id:string , name:string)
+  {
+    return this.httpClient.put<Color>(`${endpoints.color.getColors}/${id}` , name);
+  }
+
+  deleteColor(id:string){
+    return this.httpClient.delete(`${endpoints.color.getColors}/${id}`);
   }
 }

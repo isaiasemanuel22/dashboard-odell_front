@@ -1,6 +1,6 @@
 import {  Component, inject } from '@angular/core';
 import { ListComponent } from "../../../commons/list-orders/list-orders.component";
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { allTypeMaterialsSelector } from '../../../store/typeMaterial/typeMaterial.selectors';
 import { map, Observable, pipe, take } from 'rxjs';
@@ -10,7 +10,7 @@ import { deleteTypeMaterial } from '../../../store/typeMaterial/typeMaterial.act
 
 @Component({
   selector: 'odell-list-type-material',
-  imports: [ListComponent, AsyncPipe, DialogComponent, MaterialComponent],
+  imports: [ListComponent, AsyncPipe, DialogComponent, MaterialComponent,NgIf],
   templateUrl: './list-type-material.component.html',
   styleUrl: './list-type-material.component.scss'
 })

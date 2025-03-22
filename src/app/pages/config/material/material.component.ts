@@ -21,7 +21,7 @@ export class MaterialComponent {
   @Input() dataMaterial:TypeMaterial | null = null
   materialForm!:FormGroup;
   private readonly store = inject(Store);
-  @Output() close:EventEmitter<boolean> = new EventEmitter();
+  @Output() dataMaterialChange:EventEmitter<boolean> = new EventEmitter();
   constructor(private readonly fb:FormBuilder, private readonly typeMaterialService:TypeMaterialService){
   }
 
@@ -40,7 +40,7 @@ export class MaterialComponent {
       }else{
         this.store.dispatch(addTypeMaterial({name:this.materialForm.value}))
       }
-      this.close.emit(true);
+      this.dataMaterialChange.emit(true);
     }
   }
 

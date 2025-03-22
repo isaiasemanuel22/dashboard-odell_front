@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { addFilament, addFilamentSuccess, loadFilaments, loadFilamentsFailure, loadFilamentsSuccess, removeFilament, removeFilamentSuccess, updateFilament, updateFilamentSuccess } from "./filaments.actions";
 import { catchError, map, mergeMap, of } from "rxjs";
 import { FilamentService } from "../../services/filament/filament.service";
-import { loadApp } from "../initial.actions";
+import { loadTypeMaterials } from "../typeMaterial/typeMaterial.actions";
 
 @Injectable()
 export class EffectFilament {
@@ -60,7 +60,12 @@ export class EffectFilament {
             updateFilamentSuccess,
             removeFilamentSuccess
           ), // Cuando se agrega con éxito
-          map(() => loadApp()),// Llama a loadProducts() para recargar la lista
+          mergeMap(() =>
+          [
+            loadFilaments(),
+            loadTypeMaterials()
+          ]
+        ),// Llama a loadProducts() para recargar la lista
         )
       );
 
