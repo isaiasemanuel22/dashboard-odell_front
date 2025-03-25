@@ -3,16 +3,16 @@
     <span> {{ configFixed.get('type')?.value}}</span>
     <form class="form" [formGroup]="configFixed" (ngSubmit)="onSubmit()">
         <div class="row">
-            <odell-input  inputName='price_kwh'         [formControlInput]="formControlName('price_kwh')" type="number" >price_kwh</odell-input>
-            <odell-input  inputName='consume_x_hour'   [formControlInput]="formControlName('consume_x_hour')"  type="number"> consume_x_hour</odell-input>
-            <odell-input  inputName='wear_machine'      [formControlInput]="formControlName('wear_machine')" type="number">wear_machine</odell-input>
+            <odell-input  inputName='price_kwh'         [formControlInput]="formControlName('price_kwh')" type="number" >Precio Kwh</odell-input>
+            <odell-input  inputName='consume_x_hour'   [formControlInput]="formControlName('consume_x_hour')"  type="number">Consumo por hora</odell-input>
+            <odell-input  inputName='wear_machine'      [formControlInput]="formControlName('wear_machine')" type="number">Desgaste de la maquina</odell-input>
         </div>
 
         <div class="row">
-            <odell-input  inputName='price_replacement' [formControlInput]="formControlName('price_replacement')" type="number">price_replacement</odell-input>
-            <odell-input  inputName='margin_error'      [formControlInput]="formControlName('margin_error')" type="number">margin_error</odell-input>
-            <odell-input inputName='type' [formControlInput]="formControlName('type')">Type</odell-input>
+            <odell-input  inputName='price_replacement' [formControlInput]="formControlName('price_replacement')" type="number">Precio de respuestos</odell-input>
+            <odell-input  inputName='margin_error'      [formControlInput]="formControlName('margin_error')" type="number">Margen de error</odell-input>
+            <odell-input inputName='type' [formControlInput]="formControlName('type')">Tipo de configuracion</odell-input>
         </div>
-        <button type="submit" [disabled]="configFixed.invalid">Agregar Configuracion</button>
+        <odell-button typeButton="submit" [disabled]="configFixed.invalid">Agregar Configuracion</odell-button>
       </form>
 </odell-form>

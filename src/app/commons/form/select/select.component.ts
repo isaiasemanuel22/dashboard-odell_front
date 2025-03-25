@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { InputGeneral } from '../input.class';
@@ -11,16 +11,8 @@ import { InputGeneral } from '../input.class';
     styleUrl: './select.component.scss',
     providers: []
 })
-export class SelectComponent extends InputGeneral implements OnInit {
+export class SelectComponent extends InputGeneral {
 
     @Input() options:any[] =[]
 
-    ngOnInit(): void {
-        if (this.formControl) {
-            console.log(this.formControl.value);
-            this.value = 1;
-        } else {
-            console.warn('⚠️ FormControl no está definido en SelectComponent');
-        }
-    }
 }

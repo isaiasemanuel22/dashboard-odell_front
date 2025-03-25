@@ -26,7 +26,6 @@ export class ListComponent {
 
   ngOnInit(): void {
     this.titles = this.createTitles(this.items);
-    console.log(this.titles);
   }
 
   createTitles(items:any[]){

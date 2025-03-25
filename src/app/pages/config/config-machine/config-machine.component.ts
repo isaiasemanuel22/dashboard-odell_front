@@ -3,11 +3,12 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { InputComponent } from '../../../commons/form/input/input.component';
 import { ConfigService } from '../../../services/config/config.service';
 import { FormComponent } from '../../../commons/form/form/form.component';
+import { ButtonComponent } from "../../../commons/form/button/button.component";
 
 @Component({
     selector: 'odell-config-machine',
     standalone:true,
-    imports: [ReactiveFormsModule, InputComponent, FormComponent],
+    imports: [ReactiveFormsModule, InputComponent, FormComponent, ButtonComponent],
     templateUrl: './config-machine.component.html',
     styleUrl: './config-machine.component.scss'
 })
@@ -32,7 +33,7 @@ export class ConfigMachineComponent implements OnInit{
     wear_machine:0,
     price_replacement:0,
     margin_error:0,
-    type:'fdm'
+    type:''
    }){
     this.configFixed = this.fb.group({
       price_kwh:[config_machine.price_kwh,[Validators.required,]],
@@ -47,6 +48,7 @@ export class ConfigMachineComponent implements OnInit{
    onSubmit() {
     if (this.configFixed.valid) {
       this.configService.saveConfig(this.configFixed.value).toPromise().then(()=> {
+        this.configFixed.reset();
       });
     }
   }

@@ -6,7 +6,7 @@ export const endpoints = {
     },
     config:{
         createConfig:'/config',
-        getTypes:'/config/types'
+        getTypes:'/config'
     },
     filament:{
         createFilament:'/filament'

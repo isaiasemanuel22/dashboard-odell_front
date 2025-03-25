@@ -10,6 +10,7 @@ import { ListFilamentsComponent } from "./list-filaments/list-filaments.componen
 import { ListBrandComponent } from "./list-brand/list-brand.component";
 import { ListTypeMaterialComponent } from "./list-type-material/list-type-material.component";
 import { ListColorComponent } from "./list-color/list-color.component";
+import { ListMachineComponent } from "./list-machine/list-machine.component";
 
 
 
@@ -17,7 +18,9 @@ import { ListColorComponent } from "./list-color/list-color.component";
     selector: 'odell-config',
     standalone:true,
     imports: [
-        ConfigMachineComponent, MaterialComponent, FilamentComponent, BrandComponent, ColorComponent, NgIf, NgFor, ListFilamentsComponent, ListBrandComponent, ListTypeMaterialComponent, ListColorComponent],
+    ConfigMachineComponent, MaterialComponent, FilamentComponent, BrandComponent, ColorComponent, NgIf, NgFor, ListFilamentsComponent, ListBrandComponent, ListTypeMaterialComponent, ListColorComponent,
+    ListMachineComponent
+],
     templateUrl: './config.component.html',
     styleUrl: './config.component.scss'
 })
@@ -33,7 +36,6 @@ export class ConfigComponent {
 
     selectTab(selected:string)
     {
-        console.log(selected);
         this.inputSelected = selected;
     }
 }

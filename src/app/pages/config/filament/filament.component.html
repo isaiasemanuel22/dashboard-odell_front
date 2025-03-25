@@ -4,24 +4,24 @@
         <form [formGroup]="filamentForm" (ngSubmit)="onSubmit()" class="form" *ngIf="!isLoading">
             <div class="row">
                     <odell-input size="medium" type="number" inputName='kgMaterial' [formControlInput]="formControlName('kgMaterial')" >Kg</odell-input>
-                    <odell-input size="medium" type="number" inputName='price' [formControlInput]="formControlName('price')" >price</odell-input>
+                    <odell-input size="medium" type="number" inputName='price' [formControlInput]="formControlName('price')" >Precio</odell-input>
                     <odell-input size="medium" type="number" inputName='stock' [formControlInput]="formControlName('stock')" >Stock</odell-input>
             </div>
             <div class="row">
             <odell-select size="medium" inputName="color" [formControlInput]="formControlName('color')" >
-                <label>colors</label>
+                <label>Colores</label>
                 <option [value]="null">sin color</option>
                 <option *ngFor="let color of colorOptions; " [value]="color.id">{{color.name}}</option>
             </odell-select>
 
             <odell-select size="medium"  inputName="brandFilament" [formControlInput]="formControlName('brandFilament')">
-                <label>Marca Filamento</label>
+                <label>Marca de Filamento</label>
                 <option [value]="null">sin marca</option>
                 <option *ngFor="let brand of brandOptions" [value]="brand.id">{{brand.name}}</option>
             </odell-select>
 
             <odell-select size="medium" inputName="typeMaterial" [formControlInput]="formControlName('typeMaterial')">
-                <label>Typo Filamento</label>
+                <label>Tipo de Filamento</label>
                 <option [value]="null">sin material</option>
                 <option *ngFor="let materialType of materialOptions" [value]="materialType.id">{{ materialType.name}}</option>
             </odell-select>

@@ -2,7 +2,7 @@
     <span>Material</span>
     <form [formGroup]="materialForm" (ngSubmit)="onSubmit()" class="form">
         <div class="row">
-                <odell-input size="medium" inputName='name' [formControlInput]="formControlName('name')" >Type</odell-input>
+                <odell-input size="medium" inputName='name' [formControlInput]="formControlName('name')" >Tipo Material</odell-input>
         </div>
         <odell-button typeButton="submit" [disabled]="materialForm.invalid">{{ dataMaterial ? 'Actualizar' : 'Agregar Material'}}</odell-button>
       </form>

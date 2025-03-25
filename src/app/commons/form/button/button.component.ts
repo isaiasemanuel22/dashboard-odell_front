@@ -14,7 +14,6 @@ export class ButtonComponent {
   @Input() type:'primary'|'secondary'|'delete'|'disabled' = 'primary'; 
   @Input() typeButton='button'
   @Input() set disabled(disabled:boolean){
-    console.log(disabled);
     this.typeStyle = disabled ? 'disabled' : this.type;
   }
   typeStyle:'primary'|'secondary'|'delete'|'disabled' = 'primary'; 

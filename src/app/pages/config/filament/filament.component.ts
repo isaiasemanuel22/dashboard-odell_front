@@ -57,7 +57,6 @@ export class FilamentComponent implements OnInit{
         materials: this.$listMaterials
       }).subscribe(
         (result) => {
-          console.log(result.colors);
           this.colorOptions = result.colors;
           this.brandOptions = result.brands;
           this.materialOptions = result.materials;
