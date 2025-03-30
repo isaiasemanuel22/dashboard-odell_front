@@ -3,38 +3,44 @@
     <span>Crear Producto</span>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="row">
-                <odell-input size="medium" inputName='name' [formControl]="formControlName('name')" >Nombre</odell-input>
-                <odell-input size="small" inputName='cant' [formControl]="formControlName('cant')">Cantidad</odell-input>
-                <odell-select inputName="material" [formControl]="formControlName('material')">
+                <odell-input size="medium" inputName='name' [formControlInput]="formControlName('name')" >Nombre</odell-input>
+                <odell-input size="small" inputName='cant' [formControlInput]="formControlName('cant')">Cantidad</odell-input>
+                <odell-select inputName="type" [formControlInput]="formControlName('type')">
                     <label>Type</label>
-                    <option *ngFor="let type of $types | async" [value]="type">{{ type }}</option>
+                    <option [value]="0">Accesorio</option>
+                    <option *ngFor="let type of $types | async" [value]="type.id">{{ type.type }}</option>
                 </odell-select>
         </div>
-        <div class="row">
-            <odell-input size="small" inputName='gramos' [formControl]="formControlName('gramos')" type="number">Gramos</odell-input>
-            <odell-input size="small" inputName='horas' [formControl]="formControlName('horas')" type="number">Horas</odell-input>
-            <odell-select inputName="material" [formControl]="formControlName('material')">
+        <div class="row" *ngIf="formControlName('type').value != 0">
+            <odell-input size="small" inputName='gramos' [formControlInput]="formControlName('gramos')" type="number">Gramos</odell-input>
+            <odell-input size="small" inputName='horas' [formControlInput]="formControlName('horas')" type="number">Horas</odell-input>
+            <odell-select inputName="material" [formControlInput]="formControlName('material')">
                 <label>Material</label>
-                <option value="1">PLA</option>
-                <option value="2">PTGE</option>
-                <option value="3">TPU</option>
-                <option value="4">RESINA</option>
-                <option value="5">ESPECIAL</option>
+                <option *ngFor="let material of $materials | async" [value]="material.id">{{ material.name }}</option>
             </odell-select>
     
         </div>
-        <div class="row">
-            <odell-select inputName="extras" [formControl]="formControlName('extras')">
-                <label>Suplementos</label>
-                <option value="">Sin suplementos</option>
-                <option *ngFor="let supplement of $suplements | async" [value]="supplement.name" >{{supplement.name }}</option>
+        <div class="row" *ngIf="formControlName('type').value != 0">
+            <div class="container-supplements">
+                <div class="autocomplete">
+                    <odell-autocomplete [listOptions]="$suplementsAutocomplete | async" (optionSelected)="addListSelected($event)"></odell-autocomplete>
+                </div>
+                <div class="listSelected">
+                    <div class="extra" *ngFor="let extra of formControlName('extras').value">
+                       <span>{{ extra.name }}</span>
+                       <fa-icon [icon]="iconCross"></fa-icon>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
     
-            </odell-select>
+        <div class="row" *ngIf="formControlName('type').value != 0">
+
               <odell-file filesAcepted=".3mf" inputName="file3mf">
                 Archivo 3MF
               </odell-file>
         </div>
-    
         <div class="row">
             <div class="input">
                 <label>Suplement</label>
@@ -42,7 +48,6 @@
             </div>
             <div class="input">
                 <label>Product</label>
-               
             <input type="checkbox" formControlName="product" id="">
             </div>
     
@@ -57,7 +62,6 @@
         <p *ngFor="let photo of productForm.get('photos')?.value">
             {{photo.name}}
         </p>
-    
-        <button type="submit" [disabled]="productForm.invalid">Agregar Producto</button>
+        <odell-button typeButton="submit" [disabled]="productForm.invalid">Agregar Producto</odell-button>
       </form>
 </odell-form>

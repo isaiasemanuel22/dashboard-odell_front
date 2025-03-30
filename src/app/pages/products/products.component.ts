@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products/products.service';
 import { Observable } from 'rxjs';
 import { ListProductsComponent } from './compoents/list-products/list-products.component';
 import { CommonModule } from '@angular/common';
 import { FiltersComponent } from './compoents/odell-filters/odell-filters.component';
 import { SearchComponent } from './compoents/search/search.component';
+import { Store } from '@ngrx/store';
+import { allProductsSelector } from '../../store/products/products.selector';
 
 @Component({
     selector: 'odell-products',
@@ -14,17 +16,10 @@ import { SearchComponent } from './compoents/search/search.component';
     styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit{
-  
+  private readonly store = inject(Store);
   $listProducts:Observable<any> = new Observable<any>();
 
-  constructor(private readonly products:ProductsService){
-    
-  }
-
   ngOnInit(): void {
-    this.$listProducts = this.products.getProducts();
-    this.$listProducts.subscribe((response)=> {
-      console.log(response);
-    })
+    this.$listProducts = this.store.select(allProductsSelector);
   }
 }

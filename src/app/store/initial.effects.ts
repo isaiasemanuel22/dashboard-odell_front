@@ -6,6 +6,7 @@ import { loadBrands } from "./brand/brand.actions";
 import { loadFilaments } from "./filaments/filaments.actions";
 import { loadTypeMaterials } from "./typeMaterial/typeMaterial.actions";
 import { loadColors } from "./colors/colors.actions";
+import { loadProducts } from "./products/products.actions";
 
 @Injectable()
 export class EffectInitalApp {
@@ -18,7 +19,8 @@ export class EffectInitalApp {
                 loadBrands(),
                 loadFilaments(),
                 loadTypeMaterials(),
-                loadColors()
+                loadColors(),
+                loadProducts()
             ])
         )
     )

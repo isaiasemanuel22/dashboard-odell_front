@@ -1,0 +1,11 @@
+:host{
+    width: 100%;
+    .container-notifications{
+        display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-flow: column;
+            gap: 20px;
+            width: 100%;
+    }
+}

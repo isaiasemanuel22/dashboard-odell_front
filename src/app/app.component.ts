@@ -4,10 +4,11 @@ import { HeaderComponent } from './commons/layout/header/header.component';
 import { Store } from '@ngrx/store';
 import { loadApp } from './store/initial.actions';
 import { loadConfigMachine } from './store/machine/machine.actions';
+import { NotificationsComponent } from "./commons/notifications/notifications.component";
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, HeaderComponent],
+    imports: [RouterOutlet, HeaderComponent, NotificationsComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })

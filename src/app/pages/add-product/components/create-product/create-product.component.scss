@@ -1,5 +1,5 @@
 :host{
-    width: 100%;
+    width: 1000px;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -12,10 +12,37 @@
             flex-flow: column;
             .row{
                 display: flex;
-                align-items: center;
+                align-items: flex-end;
                 justify-content: center;
                 gap: 8px;
                 width: 100%;
+            }
+            .container-supplements{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                .autocomplete , .listSelected{
+                    width: 50%;
+                    box-sizing: border-box;
+                }
+
+                .listSelected{
+                    display: flex;
+                    flex-wrap: wrap;  /* Permite que los elementos se desplacen a una nueva fila cuando no haya espacio */
+                    gap: 10px;
+                    .extra{
+                        padding: 5px 10px;
+                        background-color: #929292;
+                        border-radius: 5px;
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
+                    }:hover{
+                        background-color: #b1b1b1;
+                    }
+                }
             }
     }
 }

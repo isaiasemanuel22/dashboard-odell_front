@@ -1,13 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ListComponent } from "../../../commons/list-orders/list-orders.component";
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { allConfigMachine } from '../../../store/machine/machine.selectors';
 import { map, Observable, take } from 'rxjs';
+import { deleteConfigMachine } from '../../../store/machine/machine.actions';
+import { DialogComponent } from "../../../commons/dialog/dialog.component";
+import { ConfigMachineComponent } from "../config-machine/config-machine.component";
 
 @Component({
   selector: 'odell-list-machine',
-  imports: [ListComponent,AsyncPipe],
+  imports: [ListComponent, AsyncPipe, DialogComponent, ConfigMachineComponent,NgIf],
   templateUrl: './list-machine.component.html',
   styleUrl: './list-machine.component.scss'
 })
@@ -35,7 +38,7 @@ export class ListMachineComponent {
            break;
          }
          case 'delete':{
-        //this.store.dispatch(deleteColor({id:action.data.id}))
+          this.store.dispatch(deleteConfigMachine({id:action.data.id}))
          }
        }
  }

@@ -6,9 +6,7 @@
         </div>
 
         <div class="list-navigation">
-            @for (route of routes;track route) {
-                <a [routerLink]="route.path">{{route.title}}</a>
-            }
+            <span  *ngFor="let route of routes" (click)="routerLink(route.path)">{{route.title}}</span>
         </div>
     </nav>
  </header>

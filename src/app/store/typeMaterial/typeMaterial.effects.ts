@@ -4,6 +4,7 @@ import { addTypeMaterial, addTypeMaterialFailure, addTypeMaterialSuccess, delete
 import { catchError, map, mergeMap, of } from "rxjs";
 import { TypeMaterialService } from "../../services/typeMaterial/type-material.service";
 import { loadFilaments } from "../filaments/filaments.actions";
+import { notificationFailure, notificationSuccess } from "../notifications/notification.actions";
 
 @Injectable()
 export class EffectsTypeMaterial{
@@ -26,8 +27,14 @@ export class EffectsTypeMaterial{
             ofType(addTypeMaterial),
             mergeMap(({name})=>
                 this.typeMaterialService.setTypeMaterial(name).pipe(
-                    map(()=> addTypeMaterialSuccess()),
-                    catchError((error)=> of(addTypeMaterialFailure({error:error.message})))
+                    mergeMap(()=> [
+                        addTypeMaterialSuccess(),
+                        notificationSuccess({message:'Se ha agregado el material'})
+                    ]),
+                    catchError((error)=> of(
+                        addTypeMaterialFailure({error:error.message}),
+                        notificationFailure({message:'No se ha podido agregar el material'})
+                    ))
                 )
             )
         )
@@ -38,8 +45,14 @@ export class EffectsTypeMaterial{
             ofType(updateTypeMaterial),
             mergeMap(({id,name})=>
                 this.typeMaterialService.updateMaterial(id,name).pipe(
-                    map(()=> updateTypeMaterialSuccess()),
-                    catchError((error)=> of(updateTypeMaterialFailure({error:error.message})))
+                    mergeMap(()=> [
+                        updateTypeMaterialSuccess(),
+                        notificationSuccess({message:'Se ha podido actualizado el material'})
+                    ]),
+                    catchError((error)=> of(
+                        updateTypeMaterialFailure({error:error.message}),
+                        notificationFailure({message:'No se ha podido actualizar el material'})
+                    ))
                 )
             )
         )
@@ -50,8 +63,15 @@ export class EffectsTypeMaterial{
         ofType(deleteTypeMaterial),
         mergeMap(({id})=>
             this.typeMaterialService.deleteMaterial(id).pipe(
-                map(()=> deleteTypeMaterialSuccess()),
-                catchError((error)=> of(deleteTypeMaterialFailure({error:error.message})))
+                mergeMap(()=>
+                     [
+                        deleteTypeMaterialSuccess(),
+                        notificationSuccess({message:'Se ha borrado el material'})
+                    ]),
+                catchError((error)=> of(
+                    deleteTypeMaterialFailure({error:error.message}),
+                    notificationFailure({message:'No se ha podido borrar el material'})
+                ))
             )
         )
     ))

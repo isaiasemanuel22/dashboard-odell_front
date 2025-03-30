@@ -35,3 +35,33 @@ h3{
     padding: 0px;
     margin: 0px;
 }
+
+.show{
+    animation: show .5s;
+    transform: translateX(32vw);
+}
+
+.hidden{
+    animation: hidden .5s;
+    transform: translateX(0px);
+}
+
+
+@keyframes show {
+    from {
+        transform: translateX(0px);
+    }
+    to {
+        transform: translateX(32vw);
+    }
+  }
+
+
+  @keyframes hidden {
+    from {  
+        transform: translateX(32vw);
+    }
+    to {
+        transform: translateX(0px);
+    }
+  }

@@ -1,4 +1,6 @@
 :host{
+    height: 100vh;
+    display: block;
     .row{
         display: flex;
         align-items: center;
@@ -10,5 +12,11 @@
         box-shadow: inset 2px 2px 2px #000;
         width: 100%;
         box-sizing: border-box;
+    }
+    .notifications{
+        width: 30vw;
+        position: absolute;
+        bottom: 100px;
+        transform: translateX(-30vw);
     }
 }

@@ -7,7 +7,7 @@ import { ConfigComponent } from './pages/config/config.component';
 export const routes: Routes = [
     {title:'home', path:'',component:HomeComponent},
     {title:'products', path:'products',component:ProductsComponent},
-    {title:'Create Product' ,path:'addProduct',component:AddProductComponent},
+    {title:'Create' ,path:'addProduct',component:AddProductComponent},
     {title:'config' ,path:'config',component:ConfigComponent}
     
 ];

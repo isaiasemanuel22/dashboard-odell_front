@@ -16,10 +16,7 @@ export class InputGeneral {
     @Input() set formControlInput(formControl:FormControl){
       this.formControl = formControl;
       if(formControl !== undefined){
-        this.value = formControl.value
-        formControl.valueChanges.subscribe((response)=>{
-          console.log(response);
-        })
+        this.value = formControl.value;
       }
     }
 

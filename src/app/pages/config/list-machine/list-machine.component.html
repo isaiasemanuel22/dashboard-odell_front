@@ -2,3 +2,7 @@
     <h3>Listado de configuraciones</h3> 
  </odell-list>
  
+
+ <odell-dialog *ngIf="openDialog" (close)="closeDialog()">
+    <odell-config-machine [config_machine]="machineSelected" (dataconfigMachineChange)="closeDialog()"></odell-config-machine>
+</odell-dialog>

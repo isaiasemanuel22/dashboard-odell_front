@@ -7,6 +7,9 @@ import { filamentReducer } from "./filaments/filaments.reducer";
 import { EffectInitalApp } from "./initial.effects";
 import { EffectsConfigMachine } from "./machine/machine.effects";
 import { configMachineReducer } from "./machine/machine.reducer";
+import { notificationReducer } from "./notifications/notification.reducer";
+import { EffectsProducts } from "./products/products.effects";
+import { productsReducer } from "./products/products.reducer";
 import { EffectsTypeMaterial } from "./typeMaterial/typeMaterial.effects";
 import { typeMaterialReducer } from "./typeMaterial/typeMaterial.reducer";
 
@@ -16,7 +19,9 @@ export const appReducers ={
     brands:brandReducer,
     typeMaterials:typeMaterialReducer,
     color:colorsReducer,
-    config_machine:configMachineReducer
+    config_machine:configMachineReducer,
+    notification:notificationReducer,
+    products:productsReducer
 }
 
 export const appEffects = [
@@ -25,5 +30,6 @@ export const appEffects = [
     EffectsTypeMaterial,
     EffectColor,
     EffectInitalApp,
-    EffectsConfigMachine
+    EffectsConfigMachine,
+    EffectsProducts
 ]

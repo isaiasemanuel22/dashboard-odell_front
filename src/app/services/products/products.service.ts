@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { endpoints } from '../core/endpoints';
+import { Product } from '../models/product.interface';
 
 
 
@@ -13,24 +14,14 @@ export class ProductsService {
   constructor(private readonly httpClient:HttpClient) { }
 
   getProducts(){
-
     return this.httpClient.get(endpoints.products.getProducts);
   }
   
   createProduct(product: any) {
-    this.httpClient.post<any>(endpoints.products.createProduct, product).toPromise().then(
-    (response)=>{
-      console.log(response);
-      return response;
-    },
-    (error)=>{
-      console.log(error);
-      return error;
-    }
-    );
+   return this.httpClient.post<any>(endpoints.products.createProduct, product);
   }
 
-  getSupplement(){
-    return this.httpClient.get(endpoints.products.getSupplement);
+  getSupplements(){
+    return this.httpClient.get<Product[]>(endpoints.products.getSupplement);
   }
 }

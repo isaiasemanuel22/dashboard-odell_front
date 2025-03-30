@@ -1,0 +1,18 @@
+:host{
+
+    color: #fff;
+    .notification{
+        padding: 20px;
+        border-radius: 10px;
+    }
+}
+
+.success
+{
+    background-color: rgb(35, 126, 35);
+}
+
+.error
+{
+    background-color: rgb(252, 97, 97);
+}

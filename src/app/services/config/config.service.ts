@@ -18,5 +18,13 @@ export class ConfigService {
   getTypes(){
     let url = endpoints.config.getTypes;
     return this.httpClient.get<any>(url);
-}
+  }
+
+  delete(id:string){
+    return this.httpClient.delete(`${endpoints.config.getTypes}/${id}`);
+  }
+
+  update(id:string , config:any){
+    return this.httpClient.put(`${endpoints.config.getTypes}/${id}`,config);
+  }
 }

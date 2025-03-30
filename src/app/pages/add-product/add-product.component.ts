@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { ProductsService } from '../../services/products/products.service';
 import { ProductDTO } from '../../services/models/product.interface';
+import { Store } from '@ngrx/store';
+import { addProduct } from '../../store/products/products.actions';
 
 
 
@@ -13,6 +15,7 @@ import { ProductDTO } from '../../services/models/product.interface';
 })
 export class AddProductComponent {
 
+  private readonly store = inject(Store)
 
   constructor(private readonly productService:ProductsService){
 
@@ -31,8 +34,7 @@ export class AddProductComponent {
       supplement:product.supplement,
       product:product.product
     }
-
-    this.productService.createProduct(saveProduct);
+    this.store.dispatch(addProduct({product:saveProduct}))
   }
 
 }

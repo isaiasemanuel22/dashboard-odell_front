@@ -1,0 +1,27 @@
+:host{
+    width: 100%;
+    position: relative;
+    .list-options{
+        position: absolute;
+        padding: 20px 10px;
+        width: 100%;
+        background-color: #95d8ff;
+        border-radius: 10px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-flow: column;
+        box-sizing: border-box;
+        box-shadow: inset 0px 2px 2px #000;
+        gap: 5px;
+        .options{
+            width: 100%;
+            box-sizing: border-box;
+            padding:10px;
+            cursor: pointer;
+            border-radius: 20px;
+        }:hover{
+            background-color: #36b5ff;
+        }
+    }
+}

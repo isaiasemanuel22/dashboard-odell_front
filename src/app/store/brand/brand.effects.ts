@@ -4,6 +4,7 @@ import { addBrand, addBrandFailure, addBrandSuccess, deleteBrand, deleteBrandFai
 import { catchError, map, mergeMap, of } from "rxjs";
 import { BrandService } from "../../services/brand/brand.service";
 import { loadFilaments } from "../filaments/filaments.actions";
+import { notificationFailure, notificationSuccess } from "../notifications/notification.actions";
 
 @Injectable()
 
@@ -27,8 +28,14 @@ export class EffectsBrand {
             ofType(addBrand),
             mergeMap(({name})=> 
                 this.brandService.addBrand(name).pipe(
-                    map(()=> addBrandSuccess()),
-                    catchError((error)=> of(addBrandFailure({error:error.message})))
+                    mergeMap(()=> [
+                        addBrandSuccess(),
+                        notificationSuccess({message:'Marca agregada'})
+                    ]),
+                    catchError((error)=> of(
+                        addBrandFailure({error:error.message}),
+                        notificationFailure({message:'Error al agregar marca'})
+                    ))
                 )
             )
         )
@@ -39,8 +46,15 @@ export class EffectsBrand {
             ofType(deleteBrand),
             mergeMap(({id})=> 
                 this.brandService.deleteBrand(id).pipe(
-                    map(()=> deleteBrandSuccess()),
-                    catchError((error)=> of(deleteBrandFailure({error:error.message})))
+                    mergeMap(()=> 
+                        [
+                            deleteBrandSuccess(),
+                            notificationSuccess({message:'Se ha borrado la marca'}),
+                        ]),
+                    catchError((error)=> of(
+                        deleteBrandFailure({error:error.message}),
+                        notificationFailure({message:'No se ha podido borrar la marca'})
+                    ))
                 )
             )
         )
@@ -51,8 +65,14 @@ export class EffectsBrand {
             ofType(updateBrand),
             mergeMap(({id, name})=> 
                 this.brandService.updateBrand(id,name).pipe(
-                    map(()=> updateBrandSuccess()),
-                    catchError((error)=>of(updateBrandFailure({error:error.message})))
+                    mergeMap(()=> [
+                        updateBrandSuccess(),
+                        notificationSuccess({message:'Se ha actualizado la marca'})
+                    ]),
+                    catchError((error)=>of(
+                        updateBrandFailure({error:error.message}),
+                        notificationFailure({message:'No se ha podido actualizar la marca'})
+                  ))
                 )
             )
         )

@@ -19,5 +19,5 @@ import { InputGeneral } from '../input.class';
 })
 export class InputComponent extends InputGeneral{
   @Input() type = 'text' 
-
+  @Input() placeholder = '';
 }
