@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputComponent } from '../../../commons/form/input/input.component';
 import { FormComponent } from '../../../commons/form/form/form.component';
 import { SelectComponent } from '../../../commons/form/select/select.component';
-import { combineLatest,Observable } from 'rxjs';
+import { combineLatest,Observable, Subject, takeUntil } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
 import { ButtonComponent } from "../../../commons/form/button/button.component";
 import { Filament } from '../../../services/models/Filament.interface';
@@ -21,13 +21,16 @@ import { notNullValidator } from '../../../commons/form/validators.custom';
     templateUrl: './filament.component.html',
     styleUrl: './filament.component.scss'
 })
-export class FilamentComponent implements OnInit{
+export class FilamentComponent implements OnInit, OnDestroy{
 
   @Input()set dataFilament(data:Filament | undefined){
     this.dataFilamentEdit = data;
   }
 
-  @Output() dataFilamentChange = new EventEmitter<boolean>()
+  @Output() dataFilamentChange = new EventEmitter<boolean>();
+
+  private readonly destroy$ = new Subject<void>();
+  private readonly store = inject(Store);
 
     public isLoading = true;
     filamentForm!:FormGroup;
@@ -35,18 +38,18 @@ export class FilamentComponent implements OnInit{
     $listMaterials:Observable<any>;
     $listColors:Observable<any>;
     $listBrand:Observable<any>;
-    colorOptions:any[] = []
-    brandOptions:any[] = []
-    materialOptions:any[] = []
+    colorOptions:any[] = [];
+    brandOptions:any[] = [];
+    materialOptions:any[] = [];
     editFilament = false;
-    store = inject(Store);
+
     constructor(
       private readonly fb:FormBuilder,
       private readonly cdr:ChangeDetectorRef
     ){
-      this.$listMaterials = this.store.select(allTypeMaterialsSelector);
-      this.$listColors = this.store.select(allColorsSelector)
-      this.$listBrand = this.store.select(allBrandsSelector);
+      this.$listMaterials = this.store.select(allTypeMaterialsSelector).pipe(takeUntil(this.destroy$));
+      this.$listColors = this.store.select(allColorsSelector).pipe(takeUntil(this.destroy$))
+      this.$listBrand = this.store.select(allBrandsSelector).pipe(takeUntil(this.destroy$));
     }
   
 
@@ -136,4 +139,8 @@ export class FilamentComponent implements OnInit{
         }
       }
     
+      ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
+      }
 }

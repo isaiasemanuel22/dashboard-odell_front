@@ -14,16 +14,12 @@ import { addConfigMachine, updateConfiMachine } from '../../../store/machine/mac
     styleUrl: './config-machine.component.scss'
 })
 export class ConfigMachineComponent implements OnInit{
-
-  
    @Input() config_machine:any = null;
-   configFixed!: FormGroup;
+
    private readonly store = inject(Store);
 
-   constructor(private readonly fb: FormBuilder)
-   {
-
-   }
+   configFixed!: FormGroup;
+   constructor(private readonly fb: FormBuilder){}
 
 
    ngOnInit(): void {

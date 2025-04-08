@@ -1,3 +1,5 @@
+import { Bill } from "./Bill.interface";
+
 export interface Product extends ProductDTO{
     id: string;
 }
@@ -9,7 +11,10 @@ export interface ProductDTO{
     cost: number;
     price: number;
     photos: string[];
-    bill:any;
-    supplement:boolean,
-    product:boolean
+    supplement:boolean;
+    product:boolean;
+    hours: number;
+    productInfo: any;
+    bills: Bill[];
+    supplements: Product[];
 }

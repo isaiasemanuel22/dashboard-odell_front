@@ -2,7 +2,6 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from "../../../commons/form/form/form.component";
 import { InputComponent } from "../../../commons/form/input/input.component";
-import { BrandService } from '../../../services/brand/brand.service';
 import { ButtonComponent } from "../../../commons/form/button/button.component";
 import { BrandFilament } from '../../../services/models/BrandFilament.interface';
 import { Store } from '@ngrx/store';
@@ -18,19 +17,19 @@ import { addBrand, updateBrand } from '../../../store/brand/brand.actions';
 export class BrandComponent {
   @Input() brandData:BrandFilament | null = null;
   @Output() dataBrandChange:EventEmitter<boolean> = new EventEmitter();
+
+  private readonly store = inject(Store);
+
   brandForm!:FormGroup;
   editForm = false;
 
-   store = inject(Store);
-  constructor(private readonly fb:FormBuilder, private readonly brandService:BrandService){
+  constructor(private readonly fb:FormBuilder){
     this.brandForm = this.fb.group({
-      name: [],
+      name: [''],
     })
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     let data = this.brandData ? this.brandData.name : ''
     this.brandForm = this.fb.group({
       name: [data],

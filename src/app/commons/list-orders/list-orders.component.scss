@@ -29,6 +29,8 @@
                     padding: 1rem;
                     text-align: center;
                     font-weight: bold;
+                    font-size: clamp(12px, 18px, 18px);
+                    white-space: nowrap;
                 }
             }
     

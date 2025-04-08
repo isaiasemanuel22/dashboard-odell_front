@@ -2,7 +2,6 @@ import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular
 import { FormComponent } from "../../../commons/form/form/form.component";
 import { InputComponent } from "../../../commons/form/input/input.component";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ColorService } from '../../../services/color/color.service';
 import { ButtonComponent } from "../../../commons/form/button/button.component";
 import { Store } from '@ngrx/store';
 import { Color } from '../../../services/models/Color.interface';
@@ -18,9 +17,12 @@ import { addColor, updateColor } from '../../../store/colors/colors.actions';
 export class ColorComponent implements OnInit {
   @Input() colorData: Color | null = null; 
   @Output() dataColorChange:EventEmitter<boolean> = new EventEmitter();
+
+  private readonly store = inject(Store);
+
   colorForm!:FormGroup;
-  private readonly store = inject(Store)
-  constructor(private readonly fb:FormBuilder, private readonly colorService:ColorService){}
+
+  constructor(private readonly fb:FormBuilder){}
 
   ngOnInit(): void {
     let color = this.colorData ? this.colorData.name : '';

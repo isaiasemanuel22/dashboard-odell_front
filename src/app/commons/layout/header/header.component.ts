@@ -26,7 +26,6 @@ export class HeaderComponent {
   }
 
   routerLink(router:string){
-    console.log(router);
     this.router.navigate([router]);
   }
 

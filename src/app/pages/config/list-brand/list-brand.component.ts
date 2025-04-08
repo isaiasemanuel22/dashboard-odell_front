@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { ListComponent } from "../../../commons/list-orders/list-orders.component";
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { deleteBrand } from '../../../store/brand/brand.actions';
 import { allBrandsSelector } from '../../../store/brand/brand.selector';
-import { map, Observable, take } from 'rxjs';
+import { map, Observable, Subject, take, takeUntil } from 'rxjs';
 import { DialogComponent } from "../../../commons/dialog/dialog.component";
 import { BrandComponent } from "../brand/brand.component";
 
@@ -14,15 +14,16 @@ import { BrandComponent } from "../brand/brand.component";
   templateUrl: './list-brand.component.html',
   styleUrl: './list-brand.component.scss'
 })
-export class ListBrandComponent{
+export class ListBrandComponent implements OnDestroy{
+  private readonly destroy$ = new Subject<void>();
+  private readonly store = inject(Store);
+
   $brandList:Observable<any>
-   openDialog = false;
-   brandSelected:any = undefined;
- 
-   store = inject(Store);
+  openDialog = false;
+  brandSelected:any = undefined;
 
  constructor(){
-  this.$brandList = this.store.select(allBrandsSelector);
+  this.$brandList = this.store.select(allBrandsSelector).pipe(takeUntil(this.destroy$));
  }
 
 
@@ -48,5 +49,10 @@ export class ListBrandComponent{
    closeDialog(){
      this.openDialog = false;
      this.brandSelected = undefined;
+   }
+
+   ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
    }
 }

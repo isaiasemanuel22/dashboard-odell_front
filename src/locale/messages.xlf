@@ -8,6 +8,12 @@
                     id {Identificador} 
                     cant {Cantidad} 
                     price {Precio} 
+                    price_kwh	{Precio Kwh}
+                    consume_x_hour {Consumo por hora}
+                    wear_machine	{Desgaste}
+                    price_replacement {Precio repuesto}
+                    margin_error {Margen de error}
+                    type {Tipo}
                     other {{{title}}}
                   }" xid="5501155474403244882"/> </source>
         <context-group purpose="location">

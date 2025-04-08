@@ -12,13 +12,35 @@
                 </odell-select>
         </div>
         <div class="row" *ngIf="formControlName('type').value != 0">
-            <odell-input size="small" inputName='gramos' [formControlInput]="formControlName('gramos')" type="number">Gramos</odell-input>
-            <odell-input size="small" inputName='horas' [formControlInput]="formControlName('horas')" type="number">Horas</odell-input>
-            <odell-select inputName="material" [formControlInput]="formControlName('material')">
-                <label>Material</label>
-                <option *ngFor="let material of $materials | async" [value]="material.id">{{ material.name }}</option>
-            </odell-select>
+            <div class="container-materials">
+                <div class="hours">
+                    <odell-input size="small" inputName='horas' [formControlInput]="formControlName('horas')" type="number">Horas</odell-input>
+                </div>
+                <div class="materials" formArrayName="materials">
+                    <div class="material"  *ngFor="let material of materials.controls; let i = index" [formGroupName]="i">
+                        <odell-input size="small" inputName='gramos' [formControlInput]="formControlNameMaterials(i ,'gramos')" type="number">Gramos</odell-input>
+               
+                        <odell-select inputName="material" [formControlInput]="formControlNameMaterials(i ,'material')">
+                            <label>Material</label>
+                            <option [value]="null">Sin material</option>
+                            <option *ngFor="let material of $materials | async" [value]="material.id">{{ material.name }}</option>
+                        </odell-select>
+                        <div *ngIf="i === (materials.controls.length - 1); else tacho " class="icon plus" (click)="addMaterial()">
+                            <fa-icon [icon]="iconsPlus" ></fa-icon>
+                        </div>
+
+                        <ng-template #tacho>
+                            <div class="icon tacho" (click)="removeMaterial(i)">
+                                <fa-icon [icon]="iconsTrash" ></fa-icon>
+                            </div>
+                        </ng-template>
+                        
+
+                    </div>
     
+                </div>
+            </div>
+
         </div>
         <div class="row" *ngIf="formControlName('type').value != 0">
             <div class="container-supplements">
@@ -26,17 +48,15 @@
                     <odell-autocomplete [listOptions]="$suplementsAutocomplete | async" (optionSelected)="addListSelected($event)"></odell-autocomplete>
                 </div>
                 <div class="listSelected">
-                    <div class="extra" *ngFor="let extra of formControlName('extras').value">
+                <div class="extra" *ngFor="let extra of formControlName('extras').value ; let i = index">
                        <span>{{ extra.name }}</span>
-                       <fa-icon [icon]="iconCross"></fa-icon>
+                       <fa-icon [icon]="iconCross" (click)="deleteExtra(i)"></fa-icon>
                     </div>
                 </div>
             </div>
-           
         </div>
     
         <div class="row" *ngIf="formControlName('type').value != 0">
-
               <odell-file filesAcepted=".3mf" inputName="file3mf">
                 Archivo 3MF
               </odell-file>

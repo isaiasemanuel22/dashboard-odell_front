@@ -1,9 +1,9 @@
-import {  Component, inject } from '@angular/core';
+import {  Component, inject, OnDestroy } from '@angular/core';
 import { ListComponent } from "../../../commons/list-orders/list-orders.component";
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { allTypeMaterialsSelector } from '../../../store/typeMaterial/typeMaterial.selectors';
-import { map, Observable, pipe, take } from 'rxjs';
+import { map, Observable, pipe, Subject, take, takeUntil } from 'rxjs';
 import { DialogComponent } from "../../../commons/dialog/dialog.component";
 import { MaterialComponent } from "../material/material.component";
 import { deleteTypeMaterial } from '../../../store/typeMaterial/typeMaterial.actions';
@@ -14,14 +14,17 @@ import { deleteTypeMaterial } from '../../../store/typeMaterial/typeMaterial.act
   templateUrl: './list-type-material.component.html',
   styleUrl: './list-type-material.component.scss'
 })
-export class ListTypeMaterialComponent {
-private readonly store = inject(Store)
+export class ListTypeMaterialComponent implements OnDestroy{
+private readonly store = inject(Store);
+private readonly destroy$ = new Subject<void>();
+
  $typeMaterialList:Observable<any>;
+
  typeMaterialSelected = null;
  openDialog = false;
 
  constructor(){
- this.$typeMaterialList =  this.store.select(allTypeMaterialsSelector);
+ this.$typeMaterialList =  this.store.select(allTypeMaterialsSelector).pipe(takeUntil(this.destroy$));
  }
  
     hamdler(action:{action:string,data:any}){
@@ -45,5 +48,10 @@ private readonly store = inject(Store)
    closeDialog(){
       this.openDialog = false;
       this.typeMaterialSelected = null;
+    }
+    
+    ngOnDestroy(): void {
+      this.destroy$.next();
+      this.destroy$.complete();
     }
 }

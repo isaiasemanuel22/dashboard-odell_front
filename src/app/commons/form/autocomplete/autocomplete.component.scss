@@ -1,5 +1,6 @@
 :host{
     width: 100%;
+    cursor: pointer;
     position: relative;
     .list-options{
         position: absolute;
@@ -24,4 +25,6 @@
             background-color: #36b5ff;
         }
     }
+}:focus{
+    background-color: #000;
 }

@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { InputGeneral } from '../input.class';
 
@@ -20,4 +20,10 @@ import { InputGeneral } from '../input.class';
 export class InputComponent extends InputGeneral{
   @Input() type = 'text' 
   @Input() placeholder = '';
+  @Output() focus:EventEmitter<boolean> = new EventEmitter()
+
+
+  getFocus(focus:boolean = false){
+    this.focus.emit(focus);
+  }
 }

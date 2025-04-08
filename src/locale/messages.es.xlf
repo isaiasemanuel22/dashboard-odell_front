@@ -3,8 +3,18 @@
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
 <trans-unit id="filters__description__all">
-  <source>{title, select, name {Nombre} id {Identificador} cant {Cantidad} price {Precio} other {{{title}}}}</source>
-  <target>{title, select, name {Nombre} id {Identificador} cant {Cantidad} price {Precio} other {{{title}}}}</target>
+  <source>{title, select, name {Nombre} id {Identificador} cant {Cantidad} price {Precio} price_kwh	{Precio Kwh}
+          consume_x_hour {Consumo por hora}
+          wear_machine	{Desgaste}
+          price_replacement {Precio repuesto}
+          margin_error {Margen de error}
+          type {Tipo} other {{{title}}}}</source>
+  <target>{title, select, name {Nombre} id {Identificador} cant {Cantidad} price {Precio} price_kwh	{Precio Kwh}
+                    consume_x_hour {Consumo por hora}
+                    wear_machine	{Desgaste}
+                    price_replacement {Precio repuesto}
+                    margin_error {Margen de error}
+                    type {Tipo} other {{{title}}}}</target>
 </trans-unit>
     </body>
   </file>

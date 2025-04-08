@@ -1,5 +1,5 @@
 :host{
-    width: 1000px;
+    width: 700px;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -44,5 +44,50 @@
                     }
                 }
             }
+            .container-materials{
+                width: 100%;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                .hours{
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-end;
+                    margin-right: 12px;
+                    height: 100%;
+                }
+                .materials{
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    flex-flow: column;
+                    width: 50%;
+                    .material{
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        gap: 8px;
+                        width: 100%;
+                        odell-select{
+                            width: 100%;
+                        }
+                    }
+                    .icon{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        margin-top: 20px;
+                        background-color: rgb(44, 160, 106);
+                        padding: 5px 7px;
+                    }
+                    .tacho{
+                        background-color: rgb(247, 85, 85);
+                
+                    }
+                    
+                }
+            }
+
     }
 }

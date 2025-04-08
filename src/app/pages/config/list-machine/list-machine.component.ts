@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ListComponent } from "../../../commons/list-orders/list-orders.component";
 import { AsyncPipe, NgIf } from '@angular/common';
 import { allConfigMachine } from '../../../store/machine/machine.selectors';
-import { map, Observable, take } from 'rxjs';
+import { map, Observable, Subject, take, takeUntil } from 'rxjs';
 import { deleteConfigMachine } from '../../../store/machine/machine.actions';
 import { DialogComponent } from "../../../commons/dialog/dialog.component";
 import { ConfigMachineComponent } from "../config-machine/config-machine.component";
@@ -14,15 +14,17 @@ import { ConfigMachineComponent } from "../config-machine/config-machine.compone
   templateUrl: './list-machine.component.html',
   styleUrl: './list-machine.component.scss'
 })
-export class ListMachineComponent {
+export class ListMachineComponent implements OnDestroy{
+  private readonly store = inject(Store);
+  private readonly destroy$ = new Subject<void>();
 
   $listMachine:Observable<any> ;
-  private readonly store = inject(Store);
-   machineSelected:any = null
+
+   machineSelected:any = null;
    openDialog = false;
 
   constructor(){
-    this.$listMachine = this.store.select(allConfigMachine);
+    this.$listMachine = this.store.select(allConfigMachine).pipe(takeUntil(this.destroy$));
   }
 
  hamdler(action:any){
@@ -46,6 +48,11 @@ export class ListMachineComponent {
  closeDialog(){
   this.openDialog = false;
   this.machineSelected = null;
+}
+
+ngOnDestroy(): void {
+  this.destroy$.next();
+  this.destroy$.complete();
 }
 
 }

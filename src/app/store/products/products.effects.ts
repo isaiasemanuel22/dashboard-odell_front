@@ -18,7 +18,6 @@ export class EffectsProducts{
                     catchError((error:any)=>of(
                         loadProductsFailure({error:error.message}),
                         notificationFailure({message:'Error al cargar el listado de productos'})
-                        
                     ))
                 )
             )
