@@ -26,7 +26,7 @@ export class ProductComponent {
 
   handleClick(){
     if(this.product !== null){
-      this.router.navigateByUrl('')
+      this.router.navigate(['/products/detail', this.product.id]);
     }else{
       this.router.navigateByUrl('addProduct')
     }

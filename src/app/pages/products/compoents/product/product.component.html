@@ -1,13 +1,25 @@
 
 <div class="product" (click)="handleClick()">
     <ng-container *ngIf="product !== null ; else addProduct">
-        <div class="product-picture">
-            <img src="/assets/no-image.webp" alt="">
+        <div class="product-picture" *ngIf="product.photos.length > 0; else noImage">
+            <img [src]="product.photos[0]" alt="">
         </div>
+        <ng-template #noImage> 
+            <div class="product-picture">
+                <img src="/assets/no-image.webp" alt="">
+            </div>
+        </ng-template>
+        
         
         <h3 *ngIf="product !== null">
             {{product.name}}
         </h3>
+
+        <div class="detail-product">
+            <div class="price">
+                <span>$ {{product.price}}</span>
+            </div>
+        </div>
     </ng-container>
     
     <ng-template #addProduct>

@@ -1,7 +1,21 @@
 <div class="group_filter">
-    <h4>Nombre filtro</h4>
+    <h4>Filtros de productos</h4>
     <ul>
-        <li>filtro 1</li>
-        <li>filtro 2</li>
+        <li (click)="filter('type' ,  'all')">Todos los prodcutos</li>
+        <li (click)="filter('type' ,  'supplements')">Suplements </li>
+        <li (click)="filter('type' ,  'products')">Productos</li>
+    </ul>
+
+
+    <h4>Nombre</h4>
+    <ul>
+        <li (click)="filter('name' ,  'asc')">Ascendente</li>
+        <li (click)="filter('name' ,  'des')">Desendente</li>
+    </ul>
+
+    <h4>Precio</h4>
+    <ul>
+        <li (click)="filter('price' ,  'asc')">Ascendente</li>
+        <li (click)="filter('price' ,  'des')">Desendente</li>
     </ul>
 </div>

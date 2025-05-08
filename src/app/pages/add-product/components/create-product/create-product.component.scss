@@ -26,6 +26,7 @@
                 .autocomplete , .listSelected{
                     width: 50%;
                     box-sizing: border-box;
+                    z-index: 200;
                 }
 
                 .listSelected{
@@ -88,6 +89,80 @@
                     
                 }
             }
+            .photos{
+                width: 100%;
+                display: flex;
+                flex-flow: column;
+                align-items: flex-end;
+                gap: 20px;
+                .preview{
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: 10px;
+                    min-height: 110px;
+                    border: 1px dotted rgb(0, 118, 165) ;
+                    border-radius: 10px;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    .ctn-image{
+                        position: relative;
+                        .drop-image{
+                            position: absolute;
+                            top: 5px;
+                            right:5px;
+                            z-index: 100;
+                        }
+                        width: 100px;
+                        height: 100px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img{
+                            height: 100%;
+                        }
+                        .icon{
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            flex-flow: column;
+                            font-size: 12px;
+                            height: 100%;
+                            fa-icon{
+                                margin-top: 20px;
+                                font-size: 40px;
+                            }
+                            span{
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2; /* número de líneas */
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                                text-align: center;
+                            }
 
+                        }
+                    }
+
+                }
+            }
+
+            .icon-text{
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 5px;
+            }
+
+            .noFiles{
+                width: 100%;
+                height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color:  rgb(78, 177, 216) ;
+                border-radius: 10px;
+            }
     }
 }

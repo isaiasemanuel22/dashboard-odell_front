@@ -22,6 +22,7 @@ export class ButtonComponent {
 
 
   handlerBtn(){
+    console.log(this.isDisabled)
     if(!this.isDisabled){
       this.handler.emit(true);
     }

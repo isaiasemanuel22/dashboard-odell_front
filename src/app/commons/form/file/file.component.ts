@@ -4,6 +4,7 @@ import { InputGeneral } from '../input.class';
 
 
 @Component({
+    standalone:true,
     selector: 'odell-file',
     imports: [],
     templateUrl: './file.component.html',

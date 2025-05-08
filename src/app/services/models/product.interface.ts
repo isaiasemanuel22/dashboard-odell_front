@@ -1,4 +1,5 @@
 import { Bill } from "./Bill.interface";
+import { ProductSupplement } from "./ProductSupplements.interface";
 
 export interface Product extends ProductDTO{
     id: string;
@@ -16,5 +17,5 @@ export interface ProductDTO{
     hours: number;
     productInfo: any;
     bills: Bill[];
-    supplements: Product[];
+    supplements: ProductSupplement[];
 }

@@ -1,5 +1,5 @@
 <div (click)="showList(true)">
-    <odell-input inputName='search' [formControlInput]="formControlName('search')" placeholder="Busqueda"></odell-input>
+    <odell-input inputName='search' [formControlInput]="formControlName('search')" placeholder="Busqueda"><ng-content></ng-content></odell-input>
     <ng-container *ngIf="focused && ($options  | async) as option">
         <div class="list-options" *ngIf="option !== null && option.length > 0 ">
             <div class="options" *ngFor="let option of $options | async" (click)="selectOption(option)">

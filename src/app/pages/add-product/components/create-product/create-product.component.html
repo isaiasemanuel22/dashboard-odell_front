@@ -11,6 +11,12 @@
                     <option *ngFor="let type of $types | async" [value]="type.id">{{ type.type }}</option>
                 </odell-select>
         </div>
+        <div class="row" *ngIf="formControlName('type').value == 0">
+            <odell-input size="small" inputName='cost' type="number"  [formControlInput]="formControlName('cost')" >Costo</odell-input>
+            <odell-input size="small" inputName='price'  type="number" [formControlInput]="formControlName('price')">Precio</odell-input>
+
+        </div>
+
         <div class="row" *ngIf="formControlName('type').value != 0">
             <div class="container-materials">
                 <div class="hours">
@@ -18,9 +24,9 @@
                 </div>
                 <div class="materials" formArrayName="materials">
                     <div class="material"  *ngFor="let material of materials.controls; let i = index" [formGroupName]="i">
-                        <odell-input size="small" inputName='gramos' [formControlInput]="formControlNameMaterials(i ,'gramos')" type="number">Gramos</odell-input>
+                        <odell-input size="small" inputName='gramos' [formControlInput]="formControlName('materials',i ,'gramos')" type="number">Gramos</odell-input>
                
-                        <odell-select inputName="material" [formControlInput]="formControlNameMaterials(i ,'material')">
+                        <odell-select inputName="material" [formControlInput]="formControlName('materials',i ,'material')">
                             <label>Material</label>
                             <option [value]="null">Sin material</option>
                             <option *ngFor="let material of $materials | async" [value]="material.id">{{ material.name }}</option>
@@ -34,22 +40,21 @@
                                 <fa-icon [icon]="iconsTrash" ></fa-icon>
                             </div>
                         </ng-template>
-                        
-
                     </div>
-    
                 </div>
             </div>
 
         </div>
+
         <div class="row" *ngIf="formControlName('type').value != 0">
             <div class="container-supplements">
                 <div class="autocomplete">
-                    <odell-autocomplete [listOptions]="$suplementsAutocomplete | async" (optionSelected)="addListSelected($event)"></odell-autocomplete>
+                    <odell-autocomplete [listOptions]="$suplementsAutocomplete | async" (optionSelected)="addListSelected($event)">Suplementos</odell-autocomplete>
                 </div>
                 <div class="listSelected">
-                <div class="extra" *ngFor="let extra of formControlName('extras').value ; let i = index">
-                       <span>{{ extra.name }}</span>
+                <div class="extra" *ngFor="let extra of extras.controls ; let i = index">
+                       <span>{{ extra.value.supplement.name }}</span>
+                       <odell-input size="small" inputName='cant' [formControlInput]="formControlName('extras', i ,'cant')" type="number">Cantidad</odell-input>
                        <fa-icon [icon]="iconCross" (click)="deleteExtra(i)"></fa-icon>
                     </div>
                 </div>
@@ -57,9 +62,30 @@
         </div>
     
         <div class="row" *ngIf="formControlName('type').value != 0">
-              <odell-file filesAcepted=".3mf" inputName="file3mf">
-                Archivo 3MF
-              </odell-file>
+            <div class="photos">
+                <div class="preview">
+                    <ng-container *ngIf="productForm.get('files')?.value.length > 0 ; else noFiles">
+                        <div *ngFor="let file of productForm.get('files')?.value; let i = index" class="ctn-image">
+                            <div class="drop-image" (click)="dropFile(i , 'files')">
+                                <fa-icon [icon]="iconsTrash"></fa-icon>
+                            </div>
+                            <div class="icon">
+                                <fa-icon [icon]="fileIconName(file)"></fa-icon>
+                                 <span>{{file.name}}</span>
+                            </div>
+                        </div>
+                    </ng-container> 
+                </div>
+                <div class="btn">
+                    <odell-file filesAcepted=".3mf,.stl,.obj,.zip,.rar" inputName="file3mf" [multiple]="true" (filesChange)="selectEMF($event)">
+                        <div class="icon-text">
+                            <span>Archivo</span>
+                            <fa-icon [icon]="iconFilePlus"></fa-icon>
+                        </div>
+                      </odell-file>
+                </div>
+            </div>
+
         </div>
         <div class="row">
             <div class="input">
@@ -74,14 +100,33 @@
         </div>
     
         <div class="row">
-            <odell-file inputName="fotos"  filesAcepted="." [multiple]="true">
-                Fotos
-            </odell-file>
+            <div class="photos">
+                <div class="preview">
+                    <ng-container *ngIf="productForm.get('photos')?.value.length > 0 ; else noFiles">
+                        <div *ngFor="let photo of productForm.get('photos')?.value; let i = index" class="ctn-image">
+                            <div class="drop-image" (click)="dropFile(i , 'photos')">
+                                <fa-icon [icon]="iconsTrash"></fa-icon>
+                            </div>
+                            <img [src]="getImagePreview(photo)" alt=""/>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="btn">
+                    <odell-file inputName="fotos"  filesAcepted="image/*" [multiple]="true" (filesChange)="onFileChange($event)">
+                        Fotos
+                    </odell-file>
+                </div>
+            </div>
         </div>
       
-        <p *ngFor="let photo of productForm.get('photos')?.value">
-            {{photo.name}}
-        </p>
+ 
         <odell-button typeButton="submit" [disabled]="productForm.invalid">Agregar Producto</odell-button>
       </form>
 </odell-form>
+
+
+<ng-template #noFiles>
+    <div class="noFiles">
+        <span>No se encuentran archivos</span>
+    </div>
+</ng-template>

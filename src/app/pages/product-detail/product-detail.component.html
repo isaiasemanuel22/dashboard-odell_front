@@ -1,0 +1,129 @@
+<div class="container-product" *ngIf="product$ | async as product">
+    <div class="title-product">
+        {{product.name}}
+    </div>
+    <section>
+        <label>Imagenes</label>
+        <div class="images">
+            <div class="content-image" *ngFor="let photo of product.photos">
+                <img [src]="photo" alt="">
+            </div>
+        </div>
+    </section>
+    <section>
+        <label>Extras - Suplementos</label>
+        <div class="supplements" *ngIf="product.supplements.length > 0">
+            <ng-container *ngFor=" let supplement of product.supplements">
+                <odell-product *ngIf="supplement !== undefined" [data]="supplement.supplement"></odell-product>
+            </ng-container>
+        </div>
+    </section>
+    <section>
+        <label>Info Producto</label>
+        <div class="info-producto">
+            <div class="filaments">
+                <label>Stock</label>
+                <ul>
+                    <li>
+                        <div class="filament">
+                            <div class="section">
+                                <span>{{ product.cant}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+    <section>
+        <label>Info Producto</label>
+        <div class="info-producto">
+            <div class="filaments">
+                <label>Filaments</label>
+                <ul>
+                    <li *ngFor="let filament of product.bills">
+                        <div class="filament">
+                            <div class="section">
+                                <span>Gramos</span>
+                                <span>{{ filament.grams}} grs</span>
+                            </div>
+                            <div class="section">
+                               <span>Filamento</span>
+                               <span>{{ filament.material.name }}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="filaments">
+                <label>Horas</label>
+                <ul>
+                    <li>
+                        <div class="filament">
+                            <div class="section">
+                                <span>Horas</span>
+                                <span>{{product.hours }}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="filaments">
+                <label>Precio</label>
+                <ul>
+                    <li>
+                        <div class="filament">
+                            <div class="section">
+                                <span>${{ product.price}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="filaments">
+                <label>Costo</label>
+                <ul>
+                    <li>
+                        <div class="filament">
+                            <div class="section">
+                                <span>${{product.cost }}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="filaments">
+                <label>Tipo de producto</label>
+                <ul>
+                    <li>
+                        <div class="filament">
+                            <div class="section" *ngIf="product.supplement">
+                                <span>Suplemento</span>
+                            </div>
+                            <div class="section"  *ngIf="product.product">
+                               <span>Producto</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="filaments">
+                <label>Acciones</label>
+                <ul>
+                    <li>
+                        <div class="filament">
+                            <div class="section">
+                                <odell-button>Editar</odell-button>
+                            </div>
+                            <div class="section">
+                                <odell-button [disabled]="false" type="delete" (handler)="deleteProduct(product.id)">Eliminar</odell-button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+</div>

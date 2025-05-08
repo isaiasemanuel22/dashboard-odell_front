@@ -13,9 +13,8 @@ import { ButtonComponent } from '../../../../commons/form/button/button.componen
 import { AutocompleteComponent } from '../../../../commons/form/autocomplete/autocomplete.component';
 import { allSupplements } from '../../../../store/products/products.selector';
 import { Product } from '../../../../services/models/product.interface';
-import { faClose, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faFile, faFileCirclePlus, faFileZipper, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TypeMaterial } from '../../../../services/models/TypeMaterial.interface';
 
 @Component({
     selector: 'odell-create-product',
@@ -48,7 +47,12 @@ export class CreateProductComponent implements OnDestroy {
   iconCross = faClose;
   iconsPlus = faPlus;
   iconsTrash = faTrash;
- 
+  iconFilePlus = faFileCirclePlus;
+  iconFileZipper = faFileZipper;
+  iconFile = faFile;
+
+  fileIcon = ['.3mf','.stl','.obj'];
+
   constructor(
     private readonly fb: FormBuilder,
   ) {
@@ -71,6 +75,11 @@ export class CreateProductComponent implements OnDestroy {
   )
   }
 
+  fileIconName(file:any) {
+    const is3DModel = this.fileIcon.some(ext => file.name.toLowerCase().endsWith(ext));
+    return is3DModel ? this.iconFile : this.iconFileZipper;
+  }
+
   async onSubmit() {
     if (this.productForm.valid) {
       this.dataProduct.emit(this.productForm.value);
@@ -78,33 +87,22 @@ export class CreateProductComponent implements OnDestroy {
   }
 
   onFileChange(event: any) {
-    const files:FileList = event.target.files;
-    let photos = this.productForm.get('photos')?.value;
-    if (files.length > 0) {
-      for(let i=0 ; i<files.length ; i++){
-        photos.push(files[i]);
-      }
-      this.productForm.patchValue({ photos: photos });
-    }
+    this.productForm.patchValue({ photos: [...this.productForm.value.photos , ...event]});
   }
 
   selectEMF(event:any){
-    const files:FileList = event.target.files;
-    this.productForm.patchValue({ parameters: files.item(0) });
+    console.log(event);
+    this.productForm.patchValue({ files: [...this.productForm.value.files, ...event]  });
   }
 
 
-  formControlName(name:string):FormControl{
-    return this.productForm.get(name) as FormControl
+  formControlName(name:string,i:number = -1 ,control:string=''):FormControl{
+    if(i < 0){
+      return this.productForm.get(name) as FormControl
+    }else{
+      return (this.productForm.get(name) as FormArray).at(i).get(control) as FormControl;
+    }
   }
-
-  
-  formControlNameMaterials(index:number, name:string):FormControl{
-    return this.materials.at(index).get(name) as FormControl
-  }
-
-
-
 
   createFormProduct(){
     this.productForm = this.fb.group({
@@ -112,11 +110,14 @@ export class CreateProductComponent implements OnDestroy {
       cant: [0, [Validators.required]],
       horas: [0 , [Validators.required]],
       photos: [[]],
-      extras: [[]],
+      extras: this.fb.array([]),
       materials: this.fb.array([]),
       supplement:[false],
       product:[true],
-      type:[0]
+      type:[0],
+      price:[0],
+      cost:[0],
+      files:[[]]
     });
   }
 
@@ -124,11 +125,22 @@ export class CreateProductComponent implements OnDestroy {
     return this.productForm.get('materials') as FormArray;
   }
 
+  get extras(): FormArray{
+    return this.productForm.get('extras') as FormArray
+  }
+
   createFormTypeMaterial()
   {
     return this.fb.group({
       gramos: [0, Validators.required],
       material:[null]
+    })
+  }
+
+  createExtra(extra:any){
+    return this.fb.group({
+      cant: [1, Validators.required],
+      supplement:[extra]
     })
   }
 
@@ -140,26 +152,34 @@ export class CreateProductComponent implements OnDestroy {
     this.materials.removeAt(index);
   }
   
+  getImagePreview(file: File): string {
+    return URL.createObjectURL(file);
+  }
 
   addListSelected(option:any){
     firstValueFrom(this.$suplements.pipe((
       map((supplements:Product[])=>{
         return supplements.find((supplement:any)=>supplement.id === option.id)}
     )))).then((findProduct)=>{
-      this.productForm.patchValue({extras: [...this.productForm.value.extras, findProduct]});
+      this.extras.push(this.createExtra(findProduct));
     })
   }
 
   deleteExtra(index:number){
-    let extras:any[] = this.productForm.value.extras;
-    let newExtras = extras.filter((extra:any, i:number)=>i !== index);
-    this.productForm.patchValue({extras:newExtras});
+    this.extras.removeAt(index);
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  dropFile(index:number , control:string ){
+    let files = this.formControlName(control).value;
+    let newFiles = files.filter((file:any ,i:number )=> i !== index);
+    this.formControlName(control).patchValue([...newFiles]);
+  }
+
 
 
 }

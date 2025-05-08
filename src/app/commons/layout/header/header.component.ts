@@ -11,12 +11,11 @@ import { routes } from '../../../app.routes';
 })
 export class HeaderComponent {
   
-  routes = routes.map((route)=> {
+  routes = routes.filter((route)=> route.data!['show']).map((route)=> {
       return {
         title:route.title,
-        path:route.path ? route.path : ''
-      }
-    
+        path:route.path ?? ''
+    }
   }).filter((path)=> {
     return path.path !== '**' 
   }) ;

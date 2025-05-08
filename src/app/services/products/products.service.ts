@@ -26,6 +26,7 @@ export class ProductsService {
   
   createProduct(product: any) {
       const addProduct = this.newProduct({ ...product });
+      console.log(product);
   return this.httpClient.post(`${endpoints.products.createProduct}/${product.type}`, addProduct)
 
   }
@@ -36,6 +37,34 @@ export class ProductsService {
 
 
   private newProduct(product:any){
+
+    const formData = new FormData();
+    console.log(product);
+    // Campos simples
+    formData.append('name', product.name);
+    formData.append('cant', product.cant.toString());
+    formData.append('price', product.price.toString());
+    formData.append('cost', product.cost.toString());
+    formData.append('hours', product.horas.toString());
+    formData.append('supplement', product.supplement.toString());
+    formData.append('product', product.product.toString());
+  
+    // Campos complejos como strings
+    formData.append('productInfo', JSON.stringify(null));
+    formData.append('bills', JSON.stringify(product.materials));
+    formData.append('supplements', JSON.stringify(product.extras));
+  
+    // ✅ Archivos: agregar uno por uno
+    for (const photo of product.photos) {
+      formData.append('photos', photo);
+    }
+
+        // ✅ Archivos: agregar uno por uno
+    for (const file of product.files) {
+      formData.append('files', file);
+    }
+    return formData;
+    /*
    return{
     name: product.name,
     cant: product.cant,
@@ -48,7 +77,11 @@ export class ProductsService {
     supplements: product.extras,
     hours: product.horas,
     productInfo: null
-   } 
+   } */
+  }
+
+  deleteProduct (id:string){
+    return this.httpClient.delete(`${endpoints.products.createProduct}/${id}`);
   }
 
 }

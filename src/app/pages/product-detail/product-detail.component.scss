@@ -1,0 +1,91 @@
+:host{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    .container-product{
+        width: 1200px;
+        margin: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-flow: column;
+        gap: 10px;
+        .title-product{
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            background: #ccc;
+        }
+        .images{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            height: 200px;
+            .content-image{
+                height: 100%;
+                img{
+                    height: 100%;
+                }
+            }
+        }
+        section{
+            width: 100%;
+            label{
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+                display: flex;
+                background-color: #aaa;
+                margin-bottom: 5px;
+                box-sizing: border-box;
+            }
+            .supplements{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 10px;
+            }
+            .info-producto{
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                padding: 20px;
+                box-sizing: border-box;
+                .filaments{
+                    width: 49%;
+                    box-sizing: border-box;
+                    ul{
+                        li{
+                            list-style: none;
+                            .filament{
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-start;
+                                gap: 10px;
+                                .section{
+                                    display: flex;
+                                    align-items: flex-start;
+                                    justify-content: flex-start;
+                                    flex-flow: column;
+                                    gap: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+   
+        }
+    }
+}
