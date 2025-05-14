@@ -132,7 +132,7 @@ export class CreateProductComponent implements OnDestroy {
   createFormTypeMaterial()
   {
     return this.fb.group({
-      gramos: [0, Validators.required],
+      grams: [0, Validators.required],
       material:[null]
     })
   }

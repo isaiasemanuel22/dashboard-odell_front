@@ -117,6 +117,7 @@ export class FilamentComponent implements OnInit, OnDestroy{
       createAndPathValue(data:any){
         if(data !== undefined && this.filamentForm){
          this.editFilament = true;
+         console.log(data);
           const formDataDefaul:{
             kgMaterial: number,
             brandFilament:string,

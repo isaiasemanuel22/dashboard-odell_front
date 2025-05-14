@@ -24,7 +24,7 @@
                 </div>
                 <div class="materials" formArrayName="materials">
                     <div class="material"  *ngFor="let material of materials.controls; let i = index" [formGroupName]="i">
-                        <odell-input size="small" inputName='gramos' [formControlInput]="formControlName('materials',i ,'gramos')" type="number">Gramos</odell-input>
+                        <odell-input size="small" inputName='grams' [formControlInput]="formControlName('materials',i ,'grams')" type="number">Gramos</odell-input>
                
                         <odell-select inputName="material" [formControlInput]="formControlName('materials',i ,'material')">
                             <label>Material</label>

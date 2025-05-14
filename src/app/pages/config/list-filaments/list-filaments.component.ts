@@ -30,22 +30,19 @@ export class ListFilamentsComponent implements OnInit , OnDestroy{
 
   ngOnInit(): void {
     this.store.select(allFilaments).pipe(
-      map((filaments)=>{
-        return filaments.map((filament)=>{
-          return {
-            id: filament.id,
-            price: filament.price,
-            kgMaterial: filament.kgMaterial,
-            marca: filament.brandFilament?.name,
-            color: filament.color?.name,
-            type: filament.typeMaterial?.name,
-            stock: filament.stock
-          } as any as Filament
-        })
-      }),
       takeUntil(this.destroy$)
     ).subscribe((filaments)=> {
-      this.listFilaments = filaments;
+      this.listFilaments = filaments.map((filament)=>{
+        return {
+          id: filament.id,
+          price: filament.price,
+          kgMaterial: filament.kgMaterial,
+          marca: filament.brandFilament?.name,
+          color: filament.color?.name,
+          type: filament.typeMaterial?.name,
+          stock: filament.stock
+        } as any as Filament
+      });
       this.originalFilamentList = filaments
       this.cdr.detectChanges();
     });
